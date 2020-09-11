@@ -9,7 +9,7 @@ namespace Assignment1
 {
     
     //Abstract class for all Estates. 
-    abstract class Estate : IEstate
+    public abstract class Estate : IEstate
     {
         public int Id { get; private set; }
         public Address Address { get; private set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Assignment1
 {
     //Address class.
-    class Address
+    public class Address
     {
         private string street;
         public string Street

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Assignment1;
 
 namespace Assignment1
 {
@@ -25,8 +26,8 @@ namespace Assignment1
             InitializeForm();
             Estates = new LinkedList<Estate>();
 
-            Estates.AddLast(new Residential(1, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Address.Countries.United_Kingdom), Residential.Legal.Rental, Residential.EstateType.Apartment, null));
-            Estates.AddLast(new Residential(2, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Address.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, null));
+            Estates.AddLast(new Residential(1, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Buildings.Countries.United_Kingdom), Residential.Legal.Rental, Residential.EstateType.Apartment, null));
+            Estates.AddLast(new Residential(2, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, null));
 
             UpdateEstateList();
         }
@@ -62,6 +63,7 @@ namespace Assignment1
         // TODO: Filter Estates to add to list by the parameters within the search boxes
         private void UpdateEstateList()
         {
+            /*
             String street = this.SearchBarStreet.Text;
             int zip = Int32.Parse(this.SearchBarZip.Text);
             String city = this.SearchBarCity.Text;
@@ -79,6 +81,7 @@ namespace Assignment1
             {
                 type = this.SearchBoxType.Text;
             }
+            */
 
             this.EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
@@ -100,16 +103,16 @@ namespace Assignment1
             {
                 //Estate estate = Estates.ElementAt(selectedEstate);
                 Estate res;
-                int iD = VariablesCheck.AddNewId(Int32.Parse(this.EstateId.Text), GetEstateFromList(selectedEstate), Estates.ToArray());
+                int iD = Forms.VariablesCheck.AddNewId(Int32.Parse(this.EstateId.Text), Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
                 if (this.EstateCategory.Text == "Residential")
                 {
                     
                     //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Residential(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 else
                 {
-                    res = new Commercial(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Commercial(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -126,9 +129,9 @@ namespace Assignment1
                 }
                 UpdateEstateList();
             }
-            catch (DuplicateIDException)
+            catch (Forms.DuplicateIDException)
             {
-
+                this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
             }
         }
 
@@ -142,8 +145,8 @@ namespace Assignment1
             try
             {
                 ListBox listbox = (ListBox)sender;
-                Estate building = GetEstateFromList(listbox.SelectedIndex);
-                selectedEstate = GetEstateListPositionByID(building.Id);
+                Estate building = Forms.ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates.ToArray());
+                selectedEstate = Forms.ListManip.GetEstateListPositionByID(building.Id, Estates.ToArray());
                 this.EstateId.Text = building.Id.ToString();
                 this.EstateStreet.Text = building.Address.Street.ToString();
                 this.EstateZip.Text = building.Address.Zip.ToString();
@@ -185,56 +188,8 @@ namespace Assignment1
                 Console.WriteLine(exc);
             }
         }
-        //Get Estate instance by its ID;
-        private Estate GetEstateByID(int ID)
-        {
-            for (int i = 0; i < Estates.Count; i++)
-            {
-                if (Estates.ElementAt(i).Id == ID)
-                {
-                    return Estates.ElementAt(i);
-                }
-            }
-            return null;
-        }
 
-        //Get the Estates position within the Estate List by its ID
-        private int GetEstateListPositionByID(int ID)
-        {
-            for (int i = 0; i < Estates.Count; i++)
-            {
-                if (Estates.ElementAt(i).Id == ID)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        //Get the ID of an estate from the value of the selected item within the Estate display list
-        private int GetIdFromList(String s)
-        {
-            string res = "";
-            for (int i = 0; i < s.Length; i++)
-            {
-                if (s.ElementAt(i) != ' ')
-                {
-                    res += s.ElementAt(i);
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            return Int32.Parse(res);
-        }
-
-        //Get the Estate object from the index of the Estate Display List.
-        private Estate GetEstateFromList(int listIndex)
-        {
-            return GetEstateByID(GetIdFromList(EstateListItems.ElementAt(listIndex)));
-        }
+        
 
 
         // Do I need this?
@@ -333,41 +288,5 @@ namespace Assignment1
         }
     }
 
-    public class DuplicateIDException : Exception
-    {
-        public DuplicateIDException()
-        {
 
-        }
-
-        public DuplicateIDException(string message) : base(message)
-        {
-
-        }
-    }
-
-    public abstract class EditEstate
-    {
-
-    }
-
-    public class VariablesCheck
-    {
-        //ID's are unique properties. This method checks if a new ID already exists, throws a custom exception and informs the user of the issue without stopping the program.
-        public static int AddNewId(int id, Estate selectedEstate, Estate[] estates)
-        {
-            if (selectedEstate.Id == id){
-                return id;
-            }
-            for (int i = 0; i < estates.Length; i++)
-            {
-                if (estates.ElementAt(i).Id == id)
-                {
-                    this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
-                    throw new DuplicateIDException("ID cannot be a duplicate");
-                }
-            }
-            return id;
-        }
-    }
 }
