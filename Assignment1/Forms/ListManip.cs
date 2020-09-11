@@ -56,7 +56,16 @@ namespace Assignment1.Forms
         //Get the Estate object from the index of the Estate Display List.
         public static Estate GetEstateFromList(int _listIndex, String[] _EstateListItems, Estate[] _Estates)
         {
-            return GetEstateByID(GetEstateIdFromEstateSearchList(_EstateListItems[_listIndex]), _Estates);
+            string estateListItem = "";
+            if (_listIndex < 0)
+            {
+                return null;
+            }
+            else
+            {
+                estateListItem = _EstateListItems[_listIndex];
+            }
+            return GetEstateByID(GetEstateIdFromEstateSearchList(estateListItem), _Estates);
         }
     }
 }

@@ -19,9 +19,11 @@ namespace Assignment1.Forms
 
             int ID = Int32.Parse(_id);
 
-            if (_selectedEstate.Id == ID)
-            {
-                return ID;
+            if(_selectedEstate != null) { 
+                if (_selectedEstate.Id == ID)
+                {
+                    return ID;
+                }
             }
 
 
@@ -34,6 +36,15 @@ namespace Assignment1.Forms
                 }
             }
             return ID;
+        }
+
+        internal static int CheckIfNumberFieldHasLetters(String _v)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(_v, "[^0-9]"))
+            {
+                throw new StringNotIntException();
+            }
+            return Int32.Parse(_v);
         }
     }
 }

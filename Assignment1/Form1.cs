@@ -13,7 +13,6 @@ namespace Assignment1
 {
     public partial class Form1 : Form
     {
-        //Estate[] estates;
         LinkedList<Estate> Estates;
         TextBox[] EstateInfoBoxes;
         LinkedList<string> EstateListItems;
@@ -103,16 +102,64 @@ namespace Assignment1
             {
                 //Estate estate = Estates.ElementAt(selectedEstate);
                 Estate res;
-                int iD = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
+                int id = -1;
+                int zip = -1;
+                int rent = -1;
+                int sqrft = -1;
+                try { 
+                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
+                }
+                catch (Forms.DuplicateIDException)
+                {
+                    this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
+                    throw new Forms.DuplicateIDException();
+                }
+                catch (Forms.StringNotIntException)
+                {
+                    this.EditInfo.Text = "ID must only contain numbers 0 to 9";
+                    throw new Forms.StringNotIntException();
+                }
+
+                try
+                {
+                    zip = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateZip.Text);
+                }
+                catch (Forms.StringNotIntException)
+                {
+                    this.EditInfo.Text = "Zip must only contain numbers 0 to 9";
+                    throw new Forms.StringNotIntException();
+                }
+
+                try
+                {
+                    rent = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateRent.Text);
+                }
+                catch (Forms.StringNotIntException)
+                {
+                    this.EditInfo.Text = "Rent must only contain numbers 0 to 9";
+                    throw new Forms.StringNotIntException();
+                }
+                try
+                {
+                    sqrft = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateSqrft.Text);
+                }
+                catch (Forms.StringNotIntException)
+                {
+                    this.EditInfo.Text = "Square Feet must only contain numbers 0 to 9";
+                    throw new Forms.StringNotIntException();
+                }
+
+
+
                 if (this.EstateCategory.Text == "Residential")
                 {
                     
                     //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 else
                 {
-                    res = new Commercial(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -129,14 +176,11 @@ namespace Assignment1
                 }
                 UpdateEstateList();
             }
-            catch (Forms.DuplicateIDException)
+            catch (Exception _e)
             {
-                this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
+                Console.WriteLine(_e);
             }
-            catch (Forms.StringNotIntException)
-            {
-                this.EditInfo.Text = "ID must only contain numbers 0 to 9";
-            }
+
         }
 
         //Update Estate text boxes with appropriate values from the selected Estate.
@@ -249,10 +293,10 @@ namespace Assignment1
             this.EditInfo.Text = "Create new";
             try
             {
-                this.EstateId.Text = " ";
-                this.EstateStreet.Text = " ";
-                this.EstateZip.Text = " ";
-                this.EstateCity.Text = " ";
+                this.EstateId.Text = "";
+                this.EstateStreet.Text = "";
+                this.EstateZip.Text = "";
+                this.EstateCity.Text = "";
                 this.EstateCategory.Text = _estateType;
                 this.EstateTypeMenu.Items.Clear();
                 this.EstateLegalMenu.Items.Clear();
@@ -281,23 +325,13 @@ namespace Assignment1
                             break;
                         }
                 }
-                this.EstateRent.Text = " ";
-                this.EstateSqrft.Text = " ";
+                this.EstateRent.Text = "";
+                this.EstateSqrft.Text = "";
                 this.EstateCountryMenu.SelectedItem = "Sverige";
             }
             catch (NullReferenceException exc)
             {
                 Console.WriteLine(exc);
-            }
-        }
-
-        private void EstateId_TextChanged(object sender, EventArgs e)
-        {
-            if (System.Text.RegularExpressions.Regex.IsMatch(EstateId.Text, "[^0-9]"))
-            {
-                MessageBox.Show("Please enter only numbers.");
-                String txt = EstateId.Text;
-                EstateId.Text = new String(txt.Where(c => char.IsDigit(c)).ToArray());
             }
         }
     }
