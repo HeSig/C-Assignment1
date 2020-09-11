@@ -9,24 +9,24 @@ namespace Assignment1.Forms
     public class ListManip
     {
         //Get Estate instance by its ID;
-        public static Estate GetEstateByID(int ID, Estate[] Estates)
+        public static Estate GetEstateByID(int _ID, Estate[] _Estates)
         {
-            for (int i = 0; i < Estates.Length; i++)
+            for (int i = 0; i < _Estates.Length; i++)
             {
-                if (Estates[i].Id == ID)
+                if (_Estates[i].Id == _ID)
                 {
-                    return Estates[i];
+                    return _Estates[i];
                 }
             }
             return null;
         }
 
         //Get the Estates position within the Estate List by its ID
-        public static int GetEstateSearchListPositionByEstateID(int ID, Estate[] Estates)
+        public static int GetEstateSearchListPositionByEstateID(int _ID, Estate[] _Estates)
         {
-            for (int i = 0; i < Estates.Length; i++)
+            for (int i = 0; i < _Estates.Length; i++)
             {
-                if (Estates[i].Id == ID)
+                if (_Estates[i].Id == _ID)
                 {
                     return i;
                 }
@@ -35,14 +35,14 @@ namespace Assignment1.Forms
         }
 
         //Get the ID of an estate from the value of the selected item within the Estate display list
-        public static int GetEstateIdFromEstateSearchList(String s)
+        public static int GetEstateIdFromEstateSearchList(String _s)
         {
             string res = "";
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < _s.Length; i++)
             {
-                if (s.ElementAt(i) != ' ')
+                if (_s.ElementAt(i) != ' ')
                 {
-                    res += s.ElementAt(i);
+                    res += _s.ElementAt(i);
                 }
                 else
                 {
@@ -54,9 +54,9 @@ namespace Assignment1.Forms
         }
 
         //Get the Estate object from the index of the Estate Display List.
-        public static Estate GetEstateFromList(int listIndex, String[] EstateListItems, Estate[] Estates)
+        public static Estate GetEstateFromList(int _listIndex, String[] _EstateListItems, Estate[] _Estates)
         {
-            return GetEstateByID(GetEstateIdFromEstateSearchList(EstateListItems[listIndex]), Estates);
+            return GetEstateByID(GetEstateIdFromEstateSearchList(_EstateListItems[_listIndex]), _Estates);
         }
     }
 }

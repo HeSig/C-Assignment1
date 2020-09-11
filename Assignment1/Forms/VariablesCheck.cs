@@ -9,21 +9,31 @@ namespace Assignment1.Forms
     public class VariablesCheck
     {
         //ID's are unique properties. This method checks if a new ID already exists, throws a custom exception and informs the user of the issue without stopping the program.
-        public static int AddNewId(int id, Estate selectedEstate, Estate[] estates)
+        public static int AddNewId(String _id, Estate _selectedEstate, Estate[] _estates)
         {
-            if (selectedEstate.Id == id)
+
+            if (System.Text.RegularExpressions.Regex.IsMatch(_id, "[^0-9]"))
             {
-                return id;
+                throw new StringNotIntException();
             }
-            for (int i = 0; i < estates.Length; i++)
+
+            int ID = Int32.Parse(_id);
+
+            if (_selectedEstate.Id == ID)
             {
-                if (estates.ElementAt(i).Id == id)
+                return ID;
+            }
+
+
+            for (int i = 0; i < _estates.Length; i++)
+            {
+                if (_estates.ElementAt(i).Id == ID)
                 {
 
                     throw new DuplicateIDException("ID cannot be a duplicate");
                 }
             }
-            return id;
+            return ID;
         }
     }
 }

@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Forms\DuplicateIDException.cs" />
     <Compile Include="Forms\ListManip.cs" />
+    <Compile Include="Forms\StringNotIntException.cs" />
     <Compile Include="Forms\VariablesCheck.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

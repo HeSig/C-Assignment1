@@ -48,15 +48,15 @@ namespace Assignment1
         }
 
         //Enable writing in info boxes when an estate has been selected
-        private void EnableInfoBoxes(bool b)
+        private void EnableInfoBoxes(bool _b)
         {
             for (int i = 0; i < EstateInfoBoxes.Length; i++)
             {
-                EstateInfoBoxes[i].ReadOnly = !b;
+                EstateInfoBoxes[i].ReadOnly = !_b;
             }
-            this.EstateTypeMenu.Enabled = b;
-            this.EstateCountryMenu.Enabled = b;
-            this.EstateUpdateButton.Enabled = b;
+            this.EstateTypeMenu.Enabled = _b;
+            this.EstateCountryMenu.Enabled = _b;
+            this.EstateUpdateButton.Enabled = _b;
         }
 
         //Update the estate list. Triggered when program starts and when information has been updated. Also triggered when search parameters change.
@@ -103,7 +103,7 @@ namespace Assignment1
             {
                 //Estate estate = Estates.ElementAt(selectedEstate);
                 Estate res;
-                int iD = Forms.VariablesCheck.AddNewId(Int32.Parse(this.EstateId.Text), Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
+                int iD = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
                 if (this.EstateCategory.Text == "Residential")
                 {
                     
@@ -132,6 +132,10 @@ namespace Assignment1
             catch (Forms.DuplicateIDException)
             {
                 this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
+            }
+            catch (Forms.StringNotIntException)
+            {
+                this.EditInfo.Text = "ID must only contain numbers 0 to 9";
             }
         }
 
@@ -236,12 +240,12 @@ namespace Assignment1
         //Button for creating a new estate and adding it to the list of estates.
         //Takes values from the textboxes in the edit field and uses them to create a new estate.
         //Clicking on another estate item will discard the new estate if it hasn't been created.
-        private void CreateNewEstate(String estateType)
+        private void CreateNewEstate(String _estateType)
         {
             createNew = true;
-            NewResidentialType = estateType;
+            NewResidentialType = _estateType;
             EnableInfoBoxes(true);
-            this.EstateUpdateButton.Text = "Create new " + estateType;
+            this.EstateUpdateButton.Text = "Create new " + _estateType;
             this.EditInfo.Text = "Create new";
             try
             {
@@ -249,13 +253,13 @@ namespace Assignment1
                 this.EstateStreet.Text = " ";
                 this.EstateZip.Text = " ";
                 this.EstateCity.Text = " ";
-                this.EstateCategory.Text = estateType;
+                this.EstateCategory.Text = _estateType;
                 this.EstateTypeMenu.Items.Clear();
                 this.EstateLegalMenu.Items.Clear();
                 this.EstateLegalMenu.Items.Add("Ownership");
                 this.EstateLegalMenu.Items.Add("Rental");
 
-                switch (estateType)
+                switch (_estateType)
                 {
                     case "Residential":
                         {
@@ -286,7 +290,15 @@ namespace Assignment1
                 Console.WriteLine(exc);
             }
         }
+
+        private void EstateId_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(EstateId.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please enter only numbers.");
+                String txt = EstateId.Text;
+                EstateId.Text = new String(txt.Where(c => char.IsDigit(c)).ToArray());
+            }
+        }
     }
-
-
 }
