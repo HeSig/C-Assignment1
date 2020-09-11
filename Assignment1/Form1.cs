@@ -100,14 +100,16 @@ namespace Assignment1
             {
                 //Estate estate = Estates.ElementAt(selectedEstate);
                 Estate res;
+                int iD = VariablesCheck.AddNewId(Int32.Parse(this.EstateId.Text), GetEstateFromList(selectedEstate), Estates.ToArray());
                 if (this.EstateCategory.Text == "Residential")
                 {
+                    
                     //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(AddNewId(Int32.Parse(this.EstateId.Text)), Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Residential(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 else
                 {
-                    res = new Commercial(AddNewId(Int32.Parse(this.EstateId.Text)), Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Commercial(iD, Int32.Parse(this.EstateSqrft.Text), Int32.Parse(this.EstateRent.Text), new Address(this.EstateStreet.Text, Int32.Parse(this.EstateZip.Text), this.EstateCity.Text, (Address.Countries)Enum.Parse(typeof(Address.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -263,25 +265,7 @@ namespace Assignment1
         }
         */
 
-        //ID's are unique properties. This method checks if a new ID already exists, throws a custom exception and informs the user of the issue without stopping the program.
-        private int AddNewId(int id)
-        {
-            if(selectedEstate >= 0) { 
-            if (id == GetEstateFromList(selectedEstate).Id)
-            {
-                return id;
-            }
-            }
-            for (int i = 0; i < Estates.Count; i++)
-            {
-                if (Estates.ElementAt(i).Id == id)
-                {
-                    this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
-                    throw new DuplicateIDException("ID cannot be a duplicate");
-                }
-            }
-            return id;
-        }
+        
 
         //Button for creating a new residential estate.
         private void NewResidenceButton_Click(object sender, EventArgs e)
@@ -359,6 +343,31 @@ namespace Assignment1
         public DuplicateIDException(string message) : base(message)
         {
 
+        }
+    }
+
+    public abstract class EditEstate
+    {
+
+    }
+
+    public class VariablesCheck
+    {
+        //ID's are unique properties. This method checks if a new ID already exists, throws a custom exception and informs the user of the issue without stopping the program.
+        public static int AddNewId(int id, Estate selectedEstate, Estate[] estates)
+        {
+            if (selectedEstate.Id == id){
+                return id;
+            }
+            for (int i = 0; i < estates.Length; i++)
+            {
+                if (estates.ElementAt(i).Id == id)
+                {
+                    this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
+                    throw new DuplicateIDException("ID cannot be a duplicate");
+                }
+            }
+            return id;
         }
     }
 }
