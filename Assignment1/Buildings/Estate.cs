@@ -9,7 +9,7 @@ namespace Assignment1
 {
     
     //Abstract class for all Estates. 
-    abstract class Estate : IEstate
+    public class Estate : IEstate
     {
         public int Id { get; private set; }
         public Address Address { get; private set; }
@@ -34,7 +34,14 @@ namespace Assignment1
 
         public void SetAddress(Address address)
         {
-            Address = address;
+            try
+            {
+                Address = address;
+            } catch (SpecialCharException e)
+            {
+                //TODO wtd ?
+            }
+            
         }
         public void SetLegal(Legal legal)
         {
