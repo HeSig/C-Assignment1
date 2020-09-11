@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\SpecialCharException.cs" />
     <Compile Include="Buildings\Countries.cs" />
     <Compile Include="Buildings\Estate.cs" />
     <Compile Include="Buildings\Address.cs" />
