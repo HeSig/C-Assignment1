@@ -146,7 +146,7 @@ namespace Assignment1
             {
                 ListBox listbox = (ListBox)sender;
                 Estate building = Forms.ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates.ToArray());
-                selectedEstate = Forms.ListManip.GetEstateListPositionByID(building.Id, Estates.ToArray());
+                selectedEstate = Forms.ListManip.GetEstateSearchListPositionByEstateID(building.Id, Estates.ToArray());
                 this.EstateId.Text = building.Id.ToString();
                 this.EstateStreet.Text = building.Address.Street.ToString();
                 this.EstateZip.Text = building.Address.Zip.ToString();

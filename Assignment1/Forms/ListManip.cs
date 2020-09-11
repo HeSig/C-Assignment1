@@ -22,7 +22,7 @@ namespace Assignment1.Forms
         }
 
         //Get the Estates position within the Estate List by its ID
-        public static int GetEstateListPositionByID(int ID, Estate[] Estates)
+        public static int GetEstateSearchListPositionByEstateID(int ID, Estate[] Estates)
         {
             for (int i = 0; i < Estates.Length; i++)
             {
@@ -35,7 +35,7 @@ namespace Assignment1.Forms
         }
 
         //Get the ID of an estate from the value of the selected item within the Estate display list
-        public static int GetIdFromList(String s)
+        public static int GetEstateIdFromEstateSearchList(String s)
         {
             string res = "";
             for (int i = 0; i < s.Length; i++)
@@ -56,7 +56,7 @@ namespace Assignment1.Forms
         //Get the Estate object from the index of the Estate Display List.
         public static Estate GetEstateFromList(int listIndex, String[] EstateListItems, Estate[] Estates)
         {
-            return GetEstateByID(GetIdFromList(EstateListItems[listIndex]), Estates);
+            return GetEstateByID(GetEstateIdFromEstateSearchList(EstateListItems[listIndex]), Estates);
         }
     }
 }
