@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Assignment1.Buildings
 {
     [Serializable]
-    class SpecialCharException : Exception
+    public class SpecialCharException : Exception
     {
 
         string exception;

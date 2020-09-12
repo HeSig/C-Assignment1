@@ -15,7 +15,7 @@ namespace Assignment1
         public string Street
         {
             get { return street; }
-            set { street = Street; }
+            //set { street = Street; }
         }
         private int zip;
         public int Zip
@@ -24,10 +24,51 @@ namespace Assignment1
             set { zip = Zip; }
         }
         private string city;
+
+        //checks so that street addresses doesn't contain any spec char
+        internal static bool checkValidStreetString(string _string)
+        {
+            Boolean result;
+        
+            var regexItem = new Regex("^[a-öA-Ö0-9 ]*$");
+
+            if (regexItem.IsMatch(_string))
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        //checks so that the cities doesn't contain spec chars or numbers
+        internal static bool checkValidCityString(string _string)
+        {
+            Boolean result;
+
+            var regexItem = new Regex("^[a-öA-Ö ]*$");
+
+            if (regexItem.IsMatch(_string))
+            {
+                result = true;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+
+
         public string City
         {
             get { return city; }
-            set { city = City; }
+            //set { city = City; }
         }
         public Countries country;
 
@@ -36,7 +77,7 @@ namespace Assignment1
         //Constructor for address class.
         public Address(string _street, int _zip, string _city, Countries _country)
         {
-            if (CheckValidString(_street))
+            if (checkValidStreetString(_street))
             {
                 street = _street;
             } else
@@ -44,7 +85,7 @@ namespace Assignment1
                 throw new SpecialCharException(_street);
             }
 
-            if (CheckValidString(_city))
+            if (checkValidCityString(_city))
             {
                 city = _city;
             } else
@@ -55,23 +96,6 @@ namespace Assignment1
             zip = _zip;
             country = _country;
         }
-
-        private Boolean CheckValidString(string _stringToBeChecked)
-        {
-
-            Boolean result;
-
-            if (Regex.Match(_stringToBeChecked, @"^\W+$").Success)
-            {
-                result = false;
-            }
-            else
-            {
-                result = true;
-            }
-
-            return result;
-
-        }
+       
     }
 }
