@@ -63,9 +63,11 @@ namespace Assignment1
         // TODO: Filter Estates to add to list by the parameters within the search boxes
         private void UpdateEstateList()
         {
-            /*
             String street = this.SearchBarStreet.Text;
-            int zip = Int32.Parse(this.SearchBarZip.Text);
+            string zip = "";
+            if (SearchBarZip.Text != null) { 
+                zip = this.SearchBarZip.Text;
+            }
             String city = this.SearchBarCity.Text;
             String country = "";
             if(this.SearchBoxCountry.SelectedIndex != 0) { 
@@ -81,19 +83,30 @@ namespace Assignment1
             {
                 type = this.SearchBoxType.Text;
             }
-            */
 
-            this.EstateList.Items.Clear();
+            EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
             for (int i = 0; i < Estates.Count; i++)
             {
                 Estate e = Estates.ElementAt(i);
-                EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
-                this.EstateList.Items.AddRange(new Object[]
-                {
-                    EstateListItems.ElementAt(i)
-                });
+                if(e.Address.Street.Contains(street) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.Contains(city) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal)){ 
+                    EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
+                    EstateList.Items.AddRange(new Object[]
+                    {
+                        EstateListItems.Last()
+                    });
+                }
             }
+            if (Estates.Count == 0)
+            {
+                DeleteButton.Enabled = false;
+            }
+            else
+            {
+                DeleteButton.Enabled = true;
+            }
+            selectedEstate = -1;
+            EnableInfoBoxes(false);
         }
 
         //Update an Estate within the Estate list by creating a new one and replacing it.
@@ -363,8 +376,39 @@ namespace Assignment1
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             Estates.Remove(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)),Estates.ToArray()));
+            selectedEstate = -1;
             UpdateEstateList();
             EnableInfoBoxes(false);
+        }
+
+        private void SearchBarStreet_TextChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
+        }
+
+        private void SearchBarZip_TextChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
+        }
+
+        private void SearchBarCity_TextChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
+        }
+
+        private void SearchBoxCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
+        }
+
+        private void SearchBoxType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
+        }
+
+        private void SearchBoxLegal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateEstateList();
         }
     }
 }

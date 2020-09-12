@@ -33,6 +33,9 @@ namespace Assignment1
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.SearchBoxLegal = new System.Windows.Forms.ComboBox();
             this.SearchBoxType = new System.Windows.Forms.ComboBox();
             this.SearchBoxCountry = new System.Windows.Forms.ComboBox();
@@ -50,6 +53,8 @@ namespace Assignment1
             this.NewCommercialButton = new System.Windows.Forms.Button();
             this.NewResidenceButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.ImageUpload = new System.Windows.Forms.Button();
             this.EstateLegalMenu = new System.Windows.Forms.ComboBox();
             this.EstateTypeMenu = new System.Windows.Forms.ComboBox();
             this.EstateCountryMenu = new System.Windows.Forms.ComboBox();
@@ -75,8 +80,6 @@ namespace Assignment1
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ImageUpload = new System.Windows.Forms.Button();
-            this.DeleteButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
@@ -113,6 +116,9 @@ namespace Assignment1
             // 
             // SearchGroupBox
             // 
+            this.SearchGroupBox.Controls.Add(this.label14);
+            this.SearchGroupBox.Controls.Add(this.label13);
+            this.SearchGroupBox.Controls.Add(this.label12);
             this.SearchGroupBox.Controls.Add(this.SearchBoxLegal);
             this.SearchGroupBox.Controls.Add(this.SearchBoxType);
             this.SearchGroupBox.Controls.Add(this.SearchBoxCountry);
@@ -134,6 +140,33 @@ namespace Assignment1
             this.SearchGroupBox.TabStop = false;
             this.SearchGroupBox.Text = "Search tools";
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 74);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(24, 13);
+            this.label14.TabIndex = 27;
+            this.label14.Text = "City";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "Street";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 48);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Zip Code";
+            // 
             // SearchBoxLegal
             // 
             this.SearchBoxLegal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -147,6 +180,8 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
+            this.SearchBoxLegal.SelectedIndex = 0;
+            this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
             // 
@@ -164,6 +199,8 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
+            this.SearchBoxType.SelectedIndex = 0;
+            this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
             // 
@@ -368,30 +405,32 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
+            this.SearchBoxCountry.SelectedIndex = 0;
+            this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
             // 
-            this.SearchBarCity.Location = new System.Drawing.Point(8, 71);
+            this.SearchBarCity.Location = new System.Drawing.Point(54, 71);
             this.SearchBarCity.Name = "SearchBarCity";
             this.SearchBarCity.Size = new System.Drawing.Size(100, 20);
             this.SearchBarCity.TabIndex = 14;
-            this.SearchBarCity.Text = "City";
+            this.SearchBarCity.TextChanged += new System.EventHandler(this.SearchBarCity_TextChanged);
             // 
             // SearchBarZip
             // 
-            this.SearchBarZip.Location = new System.Drawing.Point(8, 45);
+            this.SearchBarZip.Location = new System.Drawing.Point(54, 45);
             this.SearchBarZip.Name = "SearchBarZip";
             this.SearchBarZip.Size = new System.Drawing.Size(100, 20);
             this.SearchBarZip.TabIndex = 13;
-            this.SearchBarZip.Text = "Zip";
+            this.SearchBarZip.TextChanged += new System.EventHandler(this.SearchBarZip_TextChanged);
             // 
             // SearchBarStreet
             // 
-            this.SearchBarStreet.Location = new System.Drawing.Point(8, 19);
+            this.SearchBarStreet.Location = new System.Drawing.Point(54, 19);
             this.SearchBarStreet.Name = "SearchBarStreet";
             this.SearchBarStreet.Size = new System.Drawing.Size(100, 20);
             this.SearchBarStreet.TabIndex = 12;
-            this.SearchBarStreet.Text = "Street";
+            this.SearchBarStreet.TextChanged += new System.EventHandler(this.SearchBarStreet_TextChanged);
             // 
             // RentPriceSliderLabel
             // 
@@ -530,6 +569,26 @@ namespace Assignment1
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BuildingDisplay";
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(153, 457);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(98, 23);
+            this.DeleteButton.TabIndex = 26;
+            this.DeleteButton.Text = "Delete Estate";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // ImageUpload
+            // 
+            this.ImageUpload.Location = new System.Drawing.Point(291, 187);
+            this.ImageUpload.Name = "ImageUpload";
+            this.ImageUpload.Size = new System.Drawing.Size(98, 23);
+            this.ImageUpload.TabIndex = 25;
+            this.ImageUpload.Text = "Image Upload";
+            this.ImageUpload.UseVisualStyleBackColor = true;
+            this.ImageUpload.Click += new System.EventHandler(this.ImageUpload_Click);
             // 
             // EstateLegalMenu
             // 
@@ -959,26 +1018,6 @@ namespace Assignment1
             this.tabPage2.Text = "Edit List";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // ImageUpload
-            // 
-            this.ImageUpload.Location = new System.Drawing.Point(291, 187);
-            this.ImageUpload.Name = "ImageUpload";
-            this.ImageUpload.Size = new System.Drawing.Size(98, 23);
-            this.ImageUpload.TabIndex = 25;
-            this.ImageUpload.Text = "Image Upload";
-            this.ImageUpload.UseVisualStyleBackColor = true;
-            this.ImageUpload.Click += new System.EventHandler(this.ImageUpload_Click);
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Location = new System.Drawing.Point(153, 457);
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(98, 23);
-            this.DeleteButton.TabIndex = 26;
-            this.DeleteButton.Text = "Delete Estate";
-            this.DeleteButton.UseVisualStyleBackColor = true;
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1055,6 +1094,9 @@ namespace Assignment1
         private System.Windows.Forms.ComboBox SearchBoxLegal;
         private System.Windows.Forms.Button ImageUpload;
         private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
     }
 }
 
