@@ -76,6 +76,7 @@ namespace Assignment1
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.ImageUpload = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
@@ -498,6 +499,7 @@ namespace Assignment1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.DeleteButton);
             this.groupBox1.Controls.Add(this.ImageUpload);
             this.groupBox1.Controls.Add(this.EstateLegalMenu);
             this.groupBox1.Controls.Add(this.EstateTypeMenu);
@@ -524,7 +526,7 @@ namespace Assignment1
             this.groupBox1.Controls.Add(this.DisplayImage);
             this.groupBox1.Location = new System.Drawing.Point(354, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 397);
+            this.groupBox1.Size = new System.Drawing.Size(414, 486);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BuildingDisplay";
@@ -967,6 +969,16 @@ namespace Assignment1
             this.ImageUpload.UseVisualStyleBackColor = true;
             this.ImageUpload.Click += new System.EventHandler(this.ImageUpload_Click);
             // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(153, 457);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(98, 23);
+            this.DeleteButton.TabIndex = 26;
+            this.DeleteButton.Text = "Delete Estate";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1042,6 +1054,7 @@ namespace Assignment1
         private System.Windows.Forms.ComboBox SearchBoxType;
         private System.Windows.Forms.ComboBox SearchBoxLegal;
         private System.Windows.Forms.Button ImageUpload;
+        private System.Windows.Forms.Button DeleteButton;
     }
 }
 

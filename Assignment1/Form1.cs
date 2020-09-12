@@ -25,8 +25,8 @@ namespace Assignment1
             InitializeForm();
             Estates = new LinkedList<Estate>();
 
-            Estates.AddLast(new Residential(1, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Buildings.Countries.United_Kingdom), Residential.Legal.Rental, Residential.EstateType.Apartment, null));
-            Estates.AddLast(new Residential(2, 23, 2000, new Address("Bokbindaregatan 2", 22736, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, null));
+            Estates.AddLast(new Residential(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Residential.Legal.Rental, Residential.EstateType.Apartment, null));
+            Estates.AddLast(new Residential(2, 23, 2000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, null));
 
             UpdateEstateList();
         }
@@ -56,6 +56,7 @@ namespace Assignment1
             this.EstateTypeMenu.Enabled = _b;
             this.EstateCountryMenu.Enabled = _b;
             this.EstateUpdateButton.Enabled = _b;
+            this.ImageUpload.Enabled = _b;
         }
 
         //Update the estate list. Triggered when program starts and when information has been updated. Also triggered when search parameters change.
@@ -106,7 +107,7 @@ namespace Assignment1
                 int zip = -1;
                 int rent = -1;
                 int sqrft = -1;
-                try { 
+                try {
                     id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
                 }
                 catch (Forms.DuplicateIDException)
@@ -150,16 +151,13 @@ namespace Assignment1
                 }
 
                 string imageLocation = this.DisplayImage.ImageLocation;
-                //Console.WriteLine(imageLocation);
-
                 if (this.EstateCategory.Text == "Residential")
                 {
-                    //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), DisplayImage.ImageLocation);
+                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), imageLocation);
                 }
                 else
                 {
-                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), DisplayImage.ImageLocation);
+                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), imageLocation);
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -360,6 +358,13 @@ namespace Assignment1
             if (ofd.ShowDialog() == DialogResult.OK) {
                 UpdateImage(ofd.FileName);
             }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            Estates.Remove(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)),Estates.ToArray()));
+            UpdateEstateList();
+            EnableInfoBoxes(false);
         }
     }
 }

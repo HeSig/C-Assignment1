@@ -41,7 +41,7 @@ namespace Assignment1
                 Address = address;
             } catch (SpecialCharException e)
             {
-                //TODO wtd ?
+                throw new SpecialCharException();
             }
             
         }
