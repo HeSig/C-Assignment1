@@ -149,17 +149,17 @@ namespace Assignment1
                     throw new Forms.StringNotIntException();
                 }
 
-
+                string imageLocation = this.DisplayImage.ImageLocation;
+                //Console.WriteLine(imageLocation);
 
                 if (this.EstateCategory.Text == "Residential")
                 {
-                    
                     //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), DisplayImage.ImageLocation);
                 }
                 else
                 {
-                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), DisplayImage.ImageLocation);
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -227,6 +227,7 @@ namespace Assignment1
                 }
                 this.EstateTypeMenu.SelectedItem = building.GetEstateType();
 
+                UpdateImage(building.Image);
                 this.EstateRent.Text = building.Rent.ToString();
                 this.EstateSqrft.Text = building.Sqrft.ToString();
                 this.EstateCountryMenu.SelectedItem = building.Address.country.ToString();
@@ -332,6 +333,32 @@ namespace Assignment1
             catch (NullReferenceException exc)
             {
                 Console.WriteLine(exc);
+            }
+        }
+
+        private void UpdateImage(string fileName)
+        {
+            if(fileName != null) { 
+                this.DisplayImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                this.DisplayImage.ImageLocation = fileName;
+                this.DisplayImage.Image = (Image)new Bitmap(fileName);
+            }
+            else
+            {
+                this.DisplayImage.Image = null;
+            }
+        }
+
+        private void ImageUpload_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog() {
+            InitialDirectory = @"C:\",
+            RestoreDirectory = true,
+            Filter = "JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png",
+            ReadOnlyChecked = true,
+            };
+            if (ofd.ShowDialog() == DialogResult.OK) {
+                UpdateImage(ofd.FileName);
             }
         }
     }

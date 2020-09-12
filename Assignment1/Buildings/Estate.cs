@@ -17,6 +17,8 @@ namespace Assignment1
         public int Sqrft { get; private set; }
         public int Rent { get; private set; }
 
+        public String Image { get; private set; }
+
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.
         public string Category { get; protected set; }
 
@@ -67,6 +69,7 @@ namespace Assignment1
             Address = address;
             Sqrft = sqrft;
             Rent = rent;
+            Image = image;
         }
 
         public virtual string GetLegalType()

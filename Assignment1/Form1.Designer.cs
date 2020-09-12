@@ -75,6 +75,7 @@ namespace Assignment1
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ImageUpload = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
@@ -497,6 +498,7 @@ namespace Assignment1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ImageUpload);
             this.groupBox1.Controls.Add(this.EstateLegalMenu);
             this.groupBox1.Controls.Add(this.EstateTypeMenu);
             this.groupBox1.Controls.Add(this.EstateCountryMenu);
@@ -922,8 +924,6 @@ namespace Assignment1
             this.EstateId.Size = new System.Drawing.Size(159, 20);
             this.EstateId.TabIndex = 1;
             this.EstateId.Tag = "EstateDisplayValues";
-            //this.EstateId.TextChanged += new System.EventHandler(this.EstateId_TextChanged);
-
             // 
             // DisplayImage
             // 
@@ -956,6 +956,16 @@ namespace Assignment1
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Edit List";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // ImageUpload
+            // 
+            this.ImageUpload.Location = new System.Drawing.Point(291, 187);
+            this.ImageUpload.Name = "ImageUpload";
+            this.ImageUpload.Size = new System.Drawing.Size(98, 23);
+            this.ImageUpload.TabIndex = 25;
+            this.ImageUpload.Text = "Image Upload";
+            this.ImageUpload.UseVisualStyleBackColor = true;
+            this.ImageUpload.Click += new System.EventHandler(this.ImageUpload_Click);
             // 
             // Form1
             // 
@@ -1031,6 +1041,7 @@ namespace Assignment1
         private System.Windows.Forms.TextBox SearchBarStreet;
         private System.Windows.Forms.ComboBox SearchBoxType;
         private System.Windows.Forms.ComboBox SearchBoxLegal;
+        private System.Windows.Forms.Button ImageUpload;
     }
 }
 
