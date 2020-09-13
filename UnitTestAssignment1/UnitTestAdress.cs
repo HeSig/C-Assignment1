@@ -87,7 +87,7 @@ namespace UnitTestAssignment1
             //arrange
             string _streetAddress = "Storgatan 22";
             int _zipcode = 24334;
-            string _city = "Malm4ö";
+            string _city = "Malm4&ö";
             Countries _country = Countries.Sverige;
 
             string expected = "";

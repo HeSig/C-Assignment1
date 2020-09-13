@@ -757,6 +757,7 @@ namespace Assignment1
             this.EditInfo.ReadOnly = true;
             this.EditInfo.Size = new System.Drawing.Size(143, 59);
             this.EditInfo.TabIndex = 22;
+            this.EditInfo.TextChanged += new System.EventHandler(this.EditInfo_TextChanged);
             // 
             // label11
             // 
@@ -922,8 +923,6 @@ namespace Assignment1
             this.EstateId.Size = new System.Drawing.Size(159, 20);
             this.EstateId.TabIndex = 1;
             this.EstateId.Tag = "EstateDisplayValues";
-            //this.EstateId.TextChanged += new System.EventHandler(this.EstateId_TextChanged);
-
             // 
             // DisplayImage
             // 

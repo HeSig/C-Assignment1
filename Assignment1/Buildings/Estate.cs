@@ -39,7 +39,7 @@ namespace Assignment1
                 Address = address;
             } catch (SpecialCharException e)
             {
-                //TODO wtd ?
+                //TODO wtd?
             }
             
         }
@@ -64,7 +64,14 @@ namespace Assignment1
                 Category = "Commercial";
             }
             Id = id;
-            Address = address;
+            try
+            {
+                Address = address;
+            } catch (SpecialCharException specialCharException)
+            {
+                throw specialCharException;
+            }
+            
             Sqrft = sqrft;
             Rent = rent;
         }

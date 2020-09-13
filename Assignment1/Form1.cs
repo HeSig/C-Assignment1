@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Assignment1;
+using Assignment1.Buildings;
 
 namespace Assignment1
 {
@@ -148,18 +149,34 @@ namespace Assignment1
                     this.EditInfo.Text = "Square Feet must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
                 }
-
-
+               
 
                 if (this.EstateCategory.Text == "Residential")
                 {
-                    
-                    //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
-                    res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+
+                    try
+                    {
+
+                        //   Console.WriteLine((Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text));
+                        res = new Residential(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), (Residential.EstateType)Enum.Parse(typeof(Residential.EstateType), this.EstateTypeMenu.Text), " ");
+                    }
+                    catch (SpecialCharException)
+                    {
+                        this.EditInfo.Text = "Special characters in street adress or city is not allowed";
+                        throw new SpecialCharException();
+                    }
                 }
                 else
                 {
-                    res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    try
+                    {
+                        res = new Commercial(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), (Commercial.EstateType)Enum.Parse(typeof(Commercial.EstateType), this.EstateTypeMenu.Text), " ");
+                    }
+                    catch (SpecialCharException)
+                    {
+                        this.EditInfo.Text = "Special characters in street adress or city is not allowed";
+                        throw new SpecialCharException();
+                    }
                 }
                 if (!createNew) { 
                     Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
@@ -333,6 +350,11 @@ namespace Assignment1
             {
                 Console.WriteLine(exc);
             }
+        }
+
+        private void EditInfo_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
