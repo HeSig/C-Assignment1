@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buildings\BuildingTypes\Warehouse.cs" />
+    <Compile Include="Buildings\BuildingTypes\Shop.cs" />
+    <Compile Include="Buildings\BuildingTypes\Rowhouse.cs" />
+    <Compile Include="Buildings\BuildingTypes\Apartment.cs" />
+    <Compile Include="Buildings\BuildingTypes\Villa.cs" />
+    <Compile Include="Buildings\BuildingTypes\House.cs" />
     <Compile Include="Buildings\SpecialCharException.cs" />
     <Compile Include="Buildings\Countries.cs" />
     <Compile Include="Buildings\Estate.cs" />

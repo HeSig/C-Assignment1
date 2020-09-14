@@ -35,7 +35,6 @@ namespace Assignment1
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.SearchSqrftDisplay = new System.Windows.Forms.TextBox();
-            this.EstateSqrftSlider = new System.Windows.Forms.TrackBar();
             this.SearchRentDisplay = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -52,8 +51,8 @@ namespace Assignment1
             this.label2 = new System.Windows.Forms.Label();
             this.RentPriceSliderLabel2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.EstateSqrftSlider = new System.Windows.Forms.TrackBar();
             this.EstateRentSlider = new System.Windows.Forms.TrackBar();
-            this.NewCommercialButton = new System.Windows.Forms.Button();
             this.NewResidenceButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.DeleteButton = new System.Windows.Forms.Button();
@@ -68,14 +67,12 @@ namespace Assignment1
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.EstateUpdateButton = new System.Windows.Forms.Button();
             this.SqrftLabel = new System.Windows.Forms.Label();
             this.RentLabel = new System.Windows.Forms.Label();
             this.EstateRent = new System.Windows.Forms.TextBox();
             this.EstateSqrft = new System.Windows.Forms.TextBox();
-            this.EstateCategory = new System.Windows.Forms.TextBox();
             this.EstateCity = new System.Windows.Forms.TextBox();
             this.EstateZip = new System.Windows.Forms.TextBox();
             this.EstateStreet = new System.Windows.Forms.TextBox();
@@ -83,6 +80,7 @@ namespace Assignment1
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.NumberOfHiddenItems = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).BeginInit();
@@ -94,8 +92,8 @@ namespace Assignment1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.NumberOfHiddenItems);
             this.tabPage1.Controls.Add(this.SearchGroupBox);
-            this.tabPage1.Controls.Add(this.NewCommercialButton);
             this.tabPage1.Controls.Add(this.NewResidenceButton);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.EstateList);
@@ -164,19 +162,6 @@ namespace Assignment1
             this.SearchSqrftDisplay.TabIndex = 29;
             this.SearchSqrftDisplay.Text = "10";
             // 
-            // EstateSqrftSlider
-            // 
-            this.EstateSqrftSlider.LargeChange = 200;
-            this.EstateSqrftSlider.Location = new System.Drawing.Point(168, 120);
-            this.EstateSqrftSlider.Maximum = 2000;
-            this.EstateSqrftSlider.Minimum = 10;
-            this.EstateSqrftSlider.Name = "EstateSqrftSlider";
-            this.EstateSqrftSlider.Size = new System.Drawing.Size(162, 45);
-            this.EstateSqrftSlider.SmallChange = 100;
-            this.EstateSqrftSlider.TabIndex = 8;
-            this.EstateSqrftSlider.Value = 10;
-            this.EstateSqrftSlider.Scroll += new System.EventHandler(this.EstateSqrftSlider_Scroll);
-            // 
             // SearchRentDisplay
             // 
             this.SearchRentDisplay.Location = new System.Drawing.Point(54, 169);
@@ -226,6 +211,7 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
+            this.SearchBoxLegal.SelectedIndex = 0;
             this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
@@ -244,6 +230,8 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
+            //this.SearchBoxType.SelectedIndex = 0;
+            this.SearchBoxType.SelectedIndex = 0;
             this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
@@ -449,6 +437,7 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
+            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -533,6 +522,19 @@ namespace Assignment1
             this.label3.TabIndex = 9;
             this.label3.Text = "Square Feet Minimum";
             // 
+            // EstateSqrftSlider
+            // 
+            this.EstateSqrftSlider.LargeChange = 200;
+            this.EstateSqrftSlider.Location = new System.Drawing.Point(168, 120);
+            this.EstateSqrftSlider.Maximum = 2000;
+            this.EstateSqrftSlider.Minimum = 10;
+            this.EstateSqrftSlider.Name = "EstateSqrftSlider";
+            this.EstateSqrftSlider.Size = new System.Drawing.Size(162, 45);
+            this.EstateSqrftSlider.SmallChange = 100;
+            this.EstateSqrftSlider.TabIndex = 8;
+            this.EstateSqrftSlider.Value = 10;
+            this.EstateSqrftSlider.Scroll += new System.EventHandler(this.EstateSqrftSlider_Scroll);
+            // 
             // EstateRentSlider
             // 
             this.EstateRentSlider.LargeChange = 1000;
@@ -546,17 +548,6 @@ namespace Assignment1
             this.EstateRentSlider.Value = 15000;
             this.EstateRentSlider.Scroll += new System.EventHandler(this.EstateRentSlider_Scroll);
             // 
-            // NewCommercialButton
-            // 
-            this.NewCommercialButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NewCommercialButton.Location = new System.Drawing.Point(155, 494);
-            this.NewCommercialButton.Name = "NewCommercialButton";
-            this.NewCommercialButton.Size = new System.Drawing.Size(143, 23);
-            this.NewCommercialButton.TabIndex = 26;
-            this.NewCommercialButton.Text = "Create New Commercial";
-            this.NewCommercialButton.UseVisualStyleBackColor = true;
-            this.NewCommercialButton.Click += new System.EventHandler(this.NewCommercialButton_Click);
-            // 
             // NewResidenceButton
             // 
             this.NewResidenceButton.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -564,7 +555,7 @@ namespace Assignment1
             this.NewResidenceButton.Name = "NewResidenceButton";
             this.NewResidenceButton.Size = new System.Drawing.Size(143, 23);
             this.NewResidenceButton.TabIndex = 25;
-            this.NewResidenceButton.Text = "Create New Residence";
+            this.NewResidenceButton.Text = "Create New Estate";
             this.NewResidenceButton.UseVisualStyleBackColor = true;
             this.NewResidenceButton.Click += new System.EventHandler(this.NewResidenceButton_Click);
             // 
@@ -582,14 +573,12 @@ namespace Assignment1
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.EstateUpdateButton);
             this.groupBox1.Controls.Add(this.SqrftLabel);
             this.groupBox1.Controls.Add(this.RentLabel);
             this.groupBox1.Controls.Add(this.EstateRent);
             this.groupBox1.Controls.Add(this.EstateSqrft);
-            this.groupBox1.Controls.Add(this.EstateCategory);
             this.groupBox1.Controls.Add(this.EstateCity);
             this.groupBox1.Controls.Add(this.EstateZip);
             this.groupBox1.Controls.Add(this.EstateStreet);
@@ -629,6 +618,10 @@ namespace Assignment1
             // 
             this.EstateLegalMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EstateLegalMenu.FormattingEnabled = true;
+            this.EstateLegalMenu.Items.AddRange(new object[] {
+            "Ownership",
+            "Rental",
+            "Tenement"});
             this.EstateLegalMenu.Location = new System.Drawing.Point(36, 275);
             this.EstateLegalMenu.Name = "EstateLegalMenu";
             this.EstateLegalMenu.Size = new System.Drawing.Size(159, 21);
@@ -638,7 +631,14 @@ namespace Assignment1
             // 
             this.EstateTypeMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EstateTypeMenu.FormattingEnabled = true;
-            this.EstateTypeMenu.Location = new System.Drawing.Point(217, 237);
+            this.EstateTypeMenu.Items.AddRange(new object[] {
+            "House",
+            "Villa",
+            "Apartment",
+            "Rowhouse",
+            "Shop",
+            "Warehouse"});
+            this.EstateTypeMenu.Location = new System.Drawing.Point(36, 236);
             this.EstateTypeMenu.Name = "EstateTypeMenu";
             this.EstateTypeMenu.Size = new System.Drawing.Size(159, 21);
             this.EstateTypeMenu.TabIndex = 23;
@@ -904,20 +904,11 @@ namespace Assignment1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(216, 221);
+            this.label6.Location = new System.Drawing.Point(21, 222);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 16;
             this.label6.Text = "Estate Type";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(20, 221);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(82, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Estate Category";
             // 
             // label4
             // 
@@ -975,15 +966,6 @@ namespace Assignment1
             this.EstateSqrft.Size = new System.Drawing.Size(159, 20);
             this.EstateSqrft.TabIndex = 9;
             this.EstateSqrft.Tag = "EstateDisplayValues";
-            // 
-            // EstateCategory
-            // 
-            this.EstateCategory.Location = new System.Drawing.Point(36, 237);
-            this.EstateCategory.Name = "EstateCategory";
-            this.EstateCategory.ReadOnly = true;
-            this.EstateCategory.Size = new System.Drawing.Size(159, 20);
-            this.EstateCategory.TabIndex = 6;
-            this.EstateCategory.Tag = "EstateDisplayValues";
             // 
             // EstateCity
             // 
@@ -1052,6 +1034,15 @@ namespace Assignment1
             this.tabControl1.Size = new System.Drawing.Size(776, 550);
             this.tabControl1.TabIndex = 0;
             // 
+            // NumberOfHiddenItems
+            // 
+            this.NumberOfHiddenItems.AutoSize = true;
+            this.NumberOfHiddenItems.Location = new System.Drawing.Point(3, 209);
+            this.NumberOfHiddenItems.Name = "NumberOfHiddenItems";
+            this.NumberOfHiddenItems.Size = new System.Drawing.Size(75, 13);
+            this.NumberOfHiddenItems.TabIndex = 32;
+            this.NumberOfHiddenItems.Text = "0 hidden items";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1061,6 +1052,7 @@ namespace Assignment1
             this.Name = "Form1";
             this.Text = "Homes for Sale";
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.SearchGroupBox.ResumeLayout(false);
             this.SearchGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).EndInit();
@@ -1100,7 +1092,6 @@ namespace Assignment1
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TrackBar EstateSqrftSlider;
         private System.Windows.Forms.TrackBar EstateRentSlider;
-        private System.Windows.Forms.Button NewCommercialButton;
         private System.Windows.Forms.Button NewResidenceButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button DeleteButton;
@@ -1115,14 +1106,12 @@ namespace Assignment1
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button EstateUpdateButton;
         private System.Windows.Forms.Label SqrftLabel;
         private System.Windows.Forms.Label RentLabel;
         private System.Windows.Forms.TextBox EstateRent;
         private System.Windows.Forms.TextBox EstateSqrft;
-        private System.Windows.Forms.TextBox EstateCategory;
         private System.Windows.Forms.TextBox EstateCity;
         private System.Windows.Forms.TextBox EstateZip;
         private System.Windows.Forms.TextBox EstateStreet;
@@ -1134,6 +1123,7 @@ namespace Assignment1
         private System.Windows.Forms.TextBox SearchSqrftDisplay;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label NumberOfHiddenItems;
     }
 }
 
