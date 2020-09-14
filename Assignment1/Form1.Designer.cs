@@ -30,9 +30,13 @@ namespace Assignment1
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.SearchGroupBox = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.SearchSqrftDisplay = new System.Windows.Forms.TextBox();
+            this.EstateSqrftSlider = new System.Windows.Forms.TrackBar();
+            this.SearchRentDisplay = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,7 +52,6 @@ namespace Assignment1
             this.label2 = new System.Windows.Forms.Label();
             this.RentPriceSliderLabel2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.EstateRentSlider = new System.Windows.Forms.TrackBar();
             this.NewCommercialButton = new System.Windows.Forms.Button();
             this.NewResidenceButton = new System.Windows.Forms.Button();
@@ -79,25 +82,15 @@ namespace Assignment1
             this.EstateId = new System.Windows.Forms.TextBox();
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControl1.SuspendLayout();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EstateRentSlider)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayImage)).BeginInit();
+            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 550);
-            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -116,6 +109,10 @@ namespace Assignment1
             // 
             // SearchGroupBox
             // 
+            this.SearchGroupBox.Controls.Add(this.label16);
+            this.SearchGroupBox.Controls.Add(this.label15);
+            this.SearchGroupBox.Controls.Add(this.SearchSqrftDisplay);
+            this.SearchGroupBox.Controls.Add(this.SearchRentDisplay);
             this.SearchGroupBox.Controls.Add(this.label14);
             this.SearchGroupBox.Controls.Add(this.label13);
             this.SearchGroupBox.Controls.Add(this.label12);
@@ -131,14 +128,63 @@ namespace Assignment1
             this.SearchGroupBox.Controls.Add(this.label2);
             this.SearchGroupBox.Controls.Add(this.RentPriceSliderLabel2);
             this.SearchGroupBox.Controls.Add(this.label3);
-            this.SearchGroupBox.Controls.Add(this.trackBar1);
+            this.SearchGroupBox.Controls.Add(this.EstateSqrftSlider);
             this.SearchGroupBox.Controls.Add(this.EstateRentSlider);
             this.SearchGroupBox.Location = new System.Drawing.Point(3, 3);
             this.SearchGroupBox.Name = "SearchGroupBox";
-            this.SearchGroupBox.Size = new System.Drawing.Size(348, 234);
+            this.SearchGroupBox.Size = new System.Drawing.Size(348, 195);
             this.SearchGroupBox.TabIndex = 27;
             this.SearchGroupBox.TabStop = false;
             this.SearchGroupBox.Text = "Search tools";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(262, 172);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(44, 13);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "Sqr feet";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(94, 172);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(52, 13);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "Kr/Month";
+            // 
+            // SearchSqrftDisplay
+            // 
+            this.SearchSqrftDisplay.Location = new System.Drawing.Point(213, 169);
+            this.SearchSqrftDisplay.Name = "SearchSqrftDisplay";
+            this.SearchSqrftDisplay.ReadOnly = true;
+            this.SearchSqrftDisplay.Size = new System.Drawing.Size(43, 20);
+            this.SearchSqrftDisplay.TabIndex = 29;
+            this.SearchSqrftDisplay.Text = "10";
+            // 
+            // EstateSqrftSlider
+            // 
+            this.EstateSqrftSlider.LargeChange = 200;
+            this.EstateSqrftSlider.Location = new System.Drawing.Point(168, 120);
+            this.EstateSqrftSlider.Maximum = 2000;
+            this.EstateSqrftSlider.Minimum = 10;
+            this.EstateSqrftSlider.Name = "EstateSqrftSlider";
+            this.EstateSqrftSlider.Size = new System.Drawing.Size(162, 45);
+            this.EstateSqrftSlider.SmallChange = 100;
+            this.EstateSqrftSlider.TabIndex = 8;
+            this.EstateSqrftSlider.Value = 10;
+            this.EstateSqrftSlider.Scroll += new System.EventHandler(this.EstateSqrftSlider_Scroll);
+            // 
+            // SearchRentDisplay
+            // 
+            this.SearchRentDisplay.Location = new System.Drawing.Point(54, 169);
+            this.SearchRentDisplay.Name = "SearchRentDisplay";
+            this.SearchRentDisplay.ReadOnly = true;
+            this.SearchRentDisplay.Size = new System.Drawing.Size(39, 20);
+            this.SearchRentDisplay.TabIndex = 28;
+            this.SearchRentDisplay.Text = "15000";
             // 
             // label14
             // 
@@ -180,7 +226,6 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
-            this.SearchBoxLegal.SelectedIndex = 0;
             this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
@@ -199,7 +244,6 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
-            this.SearchBoxType.SelectedIndex = 0;
             this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
@@ -405,7 +449,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -435,7 +478,7 @@ namespace Assignment1
             // RentPriceSliderLabel
             // 
             this.RentPriceSliderLabel.AutoSize = true;
-            this.RentPriceSliderLabel.Location = new System.Drawing.Point(5, 167);
+            this.RentPriceSliderLabel.Location = new System.Drawing.Point(2, 105);
             this.RentPriceSliderLabel.Name = "RentPriceSliderLabel";
             this.RentPriceSliderLabel.Size = new System.Drawing.Size(103, 13);
             this.RentPriceSliderLabel.TabIndex = 5;
@@ -445,7 +488,7 @@ namespace Assignment1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(285, 209);
+            this.label1.Location = new System.Drawing.Point(282, 147);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(36, 13);
             this.label1.TabIndex = 11;
@@ -455,57 +498,45 @@ namespace Assignment1
             // 
             this.Thousand1.AutoSize = true;
             this.Thousand1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Thousand1.Location = new System.Drawing.Point(14, 209);
+            this.Thousand1.Location = new System.Drawing.Point(11, 147);
             this.Thousand1.Name = "Thousand1";
-            this.Thousand1.Size = new System.Drawing.Size(36, 13);
+            this.Thousand1.Size = new System.Drawing.Size(48, 13);
             this.Thousand1.TabIndex = 6;
-            this.Thousand1.Text = "| 1000";
+            this.Thousand1.Text = "| 1000 kr";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(181, 209);
+            this.label2.Location = new System.Drawing.Point(178, 147);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(24, 13);
             this.label2.TabIndex = 10;
-            this.label2.Text = "| 100";
+            this.label2.Text = "| 10";
             // 
             // RentPriceSliderLabel2
             // 
             this.RentPriceSliderLabel2.AutoSize = true;
             this.RentPriceSliderLabel2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.RentPriceSliderLabel2.Location = new System.Drawing.Point(118, 209);
+            this.RentPriceSliderLabel2.Location = new System.Drawing.Point(100, 147);
             this.RentPriceSliderLabel2.Name = "RentPriceSliderLabel2";
-            this.RentPriceSliderLabel2.Size = new System.Drawing.Size(36, 13);
+            this.RentPriceSliderLabel2.Size = new System.Drawing.Size(54, 13);
             this.RentPriceSliderLabel2.TabIndex = 7;
-            this.RentPriceSliderLabel2.Text = "1500 |";
+            this.RentPriceSliderLabel2.Text = "15000 kr |";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(172, 167);
+            this.label3.Location = new System.Drawing.Point(169, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(109, 13);
             this.label3.TabIndex = 9;
             this.label3.Text = "Square Feet Minimum";
             // 
-            // trackBar1
-            // 
-            this.trackBar1.LargeChange = 200;
-            this.trackBar1.Location = new System.Drawing.Point(171, 182);
-            this.trackBar1.Maximum = 2000;
-            this.trackBar1.Minimum = 100;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(162, 45);
-            this.trackBar1.SmallChange = 100;
-            this.trackBar1.TabIndex = 8;
-            this.trackBar1.Value = 100;
-            // 
             // EstateRentSlider
             // 
             this.EstateRentSlider.LargeChange = 1000;
-            this.EstateRentSlider.Location = new System.Drawing.Point(4, 182);
+            this.EstateRentSlider.Location = new System.Drawing.Point(1, 120);
             this.EstateRentSlider.Maximum = 15000;
             this.EstateRentSlider.Minimum = 1000;
             this.EstateRentSlider.Name = "EstateRentSlider";
@@ -513,6 +544,7 @@ namespace Assignment1
             this.EstateRentSlider.SmallChange = 100;
             this.EstateRentSlider.TabIndex = 4;
             this.EstateRentSlider.Value = 15000;
+            this.EstateRentSlider.Scroll += new System.EventHandler(this.EstateRentSlider_Scroll);
             // 
             // NewCommercialButton
             // 
@@ -572,12 +604,15 @@ namespace Assignment1
             // 
             // DeleteButton
             // 
+            this.DeleteButton.BackColor = System.Drawing.Color.Transparent;
+            this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DeleteButton.ForeColor = System.Drawing.Color.Red;
             this.DeleteButton.Location = new System.Drawing.Point(153, 457);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(98, 23);
             this.DeleteButton.TabIndex = 26;
             this.DeleteButton.Text = "Delete Estate";
-            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.UseVisualStyleBackColor = false;
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // ImageUpload
@@ -1000,23 +1035,22 @@ namespace Assignment1
             this.EstateList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EstateList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.EstateList.FormattingEnabled = true;
-            this.EstateList.Location = new System.Drawing.Point(3, 240);
+            this.EstateList.Location = new System.Drawing.Point(3, 227);
             this.EstateList.Name = "EstateList";
             this.EstateList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.EstateList.ScrollAlwaysVisible = true;
-            this.EstateList.Size = new System.Drawing.Size(348, 249);
+            this.EstateList.Size = new System.Drawing.Size(348, 262);
             this.EstateList.TabIndex = 0;
             this.EstateList.SelectedValueChanged += new System.EventHandler(this.EstateList_SelectedValueChanged);
             // 
-            // tabPage2
+            // tabControl1
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 524);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Edit List";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(776, 550);
+            this.tabControl1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -1026,15 +1060,15 @@ namespace Assignment1
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Homes for Sale";
-            this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.SearchGroupBox.ResumeLayout(false);
             this.SearchGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EstateRentSlider)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayImage)).EndInit();
+            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1047,56 +1081,59 @@ namespace Assignment1
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.ListBox EstateList;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.PictureBox DisplayImage;
-        private System.Windows.Forms.TextBox EstateId;
-        private System.Windows.Forms.TextBox EstateSqrft;
-        private System.Windows.Forms.TextBox EstateCategory;
-        private System.Windows.Forms.TextBox EstateCity;
-        private System.Windows.Forms.TextBox EstateZip;
-        private System.Windows.Forms.TextBox EstateStreet;
-        private System.Windows.Forms.TextBox EstateRent;
-        private System.Windows.Forms.Label SqrftLabel;
-        private System.Windows.Forms.Label RentLabel;
-        private System.Windows.Forms.TrackBar EstateRentSlider;
-        private System.Windows.Forms.Label RentPriceSliderLabel2;
-        private System.Windows.Forms.Label Thousand1;
+        private System.Windows.Forms.GroupBox SearchGroupBox;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox SearchBoxLegal;
+        private System.Windows.Forms.ComboBox SearchBoxType;
+        private System.Windows.Forms.ComboBox SearchBoxCountry;
+        private System.Windows.Forms.TextBox SearchBarCity;
+        private System.Windows.Forms.TextBox SearchBarZip;
+        private System.Windows.Forms.TextBox SearchBarStreet;
         private System.Windows.Forms.Label RentPriceSliderLabel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Thousand1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label RentPriceSliderLabel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.Button EstateUpdateButton;
+        private System.Windows.Forms.TrackBar EstateSqrftSlider;
+        private System.Windows.Forms.TrackBar EstateRentSlider;
+        private System.Windows.Forms.Button NewCommercialButton;
+        private System.Windows.Forms.Button NewResidenceButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button ImageUpload;
+        private System.Windows.Forms.ComboBox EstateLegalMenu;
+        private System.Windows.Forms.ComboBox EstateTypeMenu;
+        private System.Windows.Forms.ComboBox EstateCountryMenu;
+        private System.Windows.Forms.TextBox EditInfo;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox EditInfo;
-        private System.Windows.Forms.ComboBox EstateCountryMenu;
-        private System.Windows.Forms.ComboBox EstateTypeMenu;
-        private System.Windows.Forms.ComboBox EstateLegalMenu;
-        private System.Windows.Forms.Button NewResidenceButton;
-        private System.Windows.Forms.Button NewCommercialButton;
-        private System.Windows.Forms.GroupBox SearchGroupBox;
-        private System.Windows.Forms.ComboBox SearchBoxCountry;
-        private System.Windows.Forms.TextBox SearchBarCity;
-        private System.Windows.Forms.TextBox SearchBarZip;
-        private System.Windows.Forms.TextBox SearchBarStreet;
-        private System.Windows.Forms.ComboBox SearchBoxType;
-        private System.Windows.Forms.ComboBox SearchBoxLegal;
-        private System.Windows.Forms.Button ImageUpload;
-        private System.Windows.Forms.Button DeleteButton;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button EstateUpdateButton;
+        private System.Windows.Forms.Label SqrftLabel;
+        private System.Windows.Forms.Label RentLabel;
+        private System.Windows.Forms.TextBox EstateRent;
+        private System.Windows.Forms.TextBox EstateSqrft;
+        private System.Windows.Forms.TextBox EstateCategory;
+        private System.Windows.Forms.TextBox EstateCity;
+        private System.Windows.Forms.TextBox EstateZip;
+        private System.Windows.Forms.TextBox EstateStreet;
+        private System.Windows.Forms.TextBox EstateId;
+        private System.Windows.Forms.PictureBox DisplayImage;
+        private System.Windows.Forms.ListBox EstateList;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TextBox SearchRentDisplay;
+        private System.Windows.Forms.TextBox SearchSqrftDisplay;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }
 

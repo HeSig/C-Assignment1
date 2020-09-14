@@ -91,7 +91,7 @@ namespace Assignment1
             for (int i = 0; i < Estates.Count; i++)
             {
                 Estate e = Estates.ElementAt(i);
-                if(e.Address.Street.Contains(street) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.Contains(city) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal)){ 
+                if(e.Address.Street.Contains(street) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.Contains(city) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value){ 
                     EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
                     EstateList.Items.AddRange(new Object[]
                     {
@@ -420,6 +420,18 @@ namespace Assignment1
 
         private void SearchBoxLegal_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UpdateEstateList();
+        }
+
+        private void EstateRentSlider_Scroll(object sender, EventArgs e)
+        {
+            SearchRentDisplay.Text = EstateRentSlider.Value.ToString();
+            UpdateEstateList();
+        }
+
+        private void EstateSqrftSlider_Scroll(object sender, EventArgs e)
+        {
+            SearchSqrftDisplay.Text = EstateSqrftSlider.Value.ToString();
             UpdateEstateList();
         }
     }
