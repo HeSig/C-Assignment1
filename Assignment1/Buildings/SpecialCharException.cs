@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Assignment1.Buildings
 {
     [Serializable]
-    class SpecialCharException : Exception
+    public class SpecialCharException : Exception
     {
 
         string exception;
@@ -16,7 +16,7 @@ namespace Assignment1.Buildings
 
         }
 
-        public SpecialCharException(string _string) : base(String.Format("Invalid string: {0}", _string)) { }
+        public SpecialCharException(string _string) : base(_string) { }
 
     }
 }
