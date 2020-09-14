@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Assignment1;
+using System.IO;
 
 namespace Assignment1
 {
@@ -25,8 +26,8 @@ namespace Assignment1
             InitializeForm();
             Estates = new LinkedList<Estate>();
 
-            Estates.AddLast(new Residential(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Residential.Legal.Rental, Residential.EstateType.Apartment, null));
-            Estates.AddLast(new Residential(2, 23, 2000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, null));
+            Estates.AddLast(new Residential(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Residential.Legal.Rental, Residential.EstateType.Apartment, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
+            Estates.AddLast(new Residential(2, 23, 2000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
 
             UpdateEstateList();
         }
@@ -374,8 +375,10 @@ namespace Assignment1
 
         private void ImageUpload_Click(object sender, EventArgs e)
         {
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images";
             OpenFileDialog ofd = new OpenFileDialog() {
-            InitialDirectory = @"C:\",
+                //InitialDirectory = @"C:\",
+            InitialDirectory = projectDirectory,
             RestoreDirectory = true,
             Filter = "JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png",
             ReadOnlyChecked = true,
