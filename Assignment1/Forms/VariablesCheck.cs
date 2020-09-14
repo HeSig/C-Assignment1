@@ -26,7 +26,6 @@ namespace Assignment1.Forms
                 }
             }
 
-
             for (int i = 0; i < _estates.Length; i++)
             {
                 if (_estates.ElementAt(i).Id == ID)

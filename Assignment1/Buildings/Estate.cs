@@ -32,14 +32,15 @@ namespace Assignment1
         public enum EstateType { };
         public EstateType BuildingType { get; protected set; }
 
+        public string Image { get; private set; }
         public void SetAddress(Address address)
         {
             try
             {
                 Address = address;
-            } catch (SpecialCharException e)
+            } catch (SpecialCharException)
             {
-                //TODO wtd?
+                throw new SpecialCharException();
             }
             
         }
@@ -74,6 +75,7 @@ namespace Assignment1
             
             Sqrft = sqrft;
             Rent = rent;
+            Image = image;
         }
 
         public virtual string GetLegalType()

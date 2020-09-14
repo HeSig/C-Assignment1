@@ -57,6 +57,7 @@ namespace Assignment1
             this.EstateCountryMenu.Enabled = _b;
             this.EstateUpdateButton.Enabled = _b;
             this.ImageUpload.Enabled = _b;
+            this.DeleteButton.Enabled = _b;
         }
 
         //Update the estate list. Triggered when program starts and when information has been updated. Also triggered when search parameters change.
@@ -83,6 +84,7 @@ namespace Assignment1
             {
                 type = this.SearchBoxType.Text;
             }
+
 
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
@@ -120,6 +122,7 @@ namespace Assignment1
                 int zip = -1;
                 int rent = -1;
                 int sqrft = -1;
+                Address a = null;
                 try {
                     id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate,EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
                 }
@@ -161,6 +164,15 @@ namespace Assignment1
                 {
                     this.EditInfo.Text = "Square Feet must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
+                }
+
+                try
+                {
+                    a = new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text));
+                }
+                catch (Buildings.SpecialCharException)
+                {
+                    this.EditInfo.Text = "Street address must only contain letters A-Ö and numbers 0 to 9. And City can only contain letters A-Ö.";
                 }
 
                 string imageLocation = this.DisplayImage.ImageLocation;
