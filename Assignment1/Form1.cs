@@ -27,7 +27,7 @@ namespace Assignment1
             Estates = new LinkedList<Estate>();
 
             Estates.AddLast(new Residential(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Residential.Legal.Rental, Residential.EstateType.Apartment, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
-            Estates.AddLast(new Residential(2, 23, 2000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Residential.Legal.Tenement, Residential.EstateType.Apartment, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
+            Estates.AddLast(new Commercial(2, 23, 2000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Commercial.Legal.Ownership, Commercial.EstateType.Shop, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
 
             UpdateEstateList();
         }
