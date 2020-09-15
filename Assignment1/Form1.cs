@@ -15,17 +15,25 @@ namespace Assignment1
 {
     public partial class Form1 : Form
     {
+        //List of Estate objects, can be of any type.
         LinkedList<Estate> Estates;
+        //All the boxes in the edit-part of the window, organized for easy manipulation.
         TextBox[] EstateInfoBoxes;
+        //List of Estate objects converted into strings to be shown in the list of estates in the list part of the window.
         LinkedList<string> EstateListItems;
+        //Currently selected estate, used for replacing an object.
         int selectedEstate;
+        //Flag which tells the program wether to create a new estate to add to the list, or to just replace an item within the list.
         Boolean createNew;
+
+        // Main method.
         public Form1()
         {
             InitializeComponent();
             InitializeForm();
             Estates = new LinkedList<Estate>();
 
+            //Create Estates and add them to the list.
             Estates.AddLast(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
             Estates.AddLast(new Villa(2, 500, 5000, new Address("Sopgatan 11", 42736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
             Estates.AddLast(new Rowhouse(3, 200, 4500, new Address("Kungsvägen 12", 31536, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Tenement, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
@@ -51,7 +59,7 @@ namespace Assignment1
             EstateInfoBoxes[5] = this.EstateSqrft;
         }
 
-        //Enable writing in info boxes when an estate has been selected
+        //Enable/disable writing in info boxes when an estate has been selected/edited.
         private void EnableInfoBoxes(bool _b)
         {
             for (int i = 0; i < EstateInfoBoxes.Length; i++)
@@ -95,11 +103,15 @@ namespace Assignment1
 
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
+
+            //This for-loop goes through every Estate in the list of Estates and checks wether the filter-attributes correspond to the attributes of the estate.
+            //If they do they are added to the list, if not they are hidden from view.
             for (int i = 0; i < Estates.Count; i++)
             {
                 Estate e = Estates.ElementAt(i);
                 if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
                 {
+                    //Create a string representation of an Estate as such: ID : Street, City, Country.
                     EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
                     EstateList.Items.AddRange(new Object[]
                     {
@@ -119,7 +131,9 @@ namespace Assignment1
             {
                 DeleteButton.Enabled = true;
             }
+            //Shows the user how many Estates are hidden from the list, so there's no confusion.
             NumberOfHiddenItems.Text = hiddenCount + " hidden items";
+            //Resets the selected estate, because the order of estates have been shifted around.
             selectedEstate = -1;
             EnableInfoBoxes(false);
         }
@@ -137,61 +151,77 @@ namespace Assignment1
                 Address a = null;
                 try
                 {
+                    //Checks wether the ID is unique, or the currently selected estate has the same ID. If not it throws an InvalidIDException.
                     id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate, EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
                 }
                 catch (Forms.DuplicateIDException)
                 {
+                    //Informs the user of the issue.
                     this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
                     throw new Forms.DuplicateIDException();
                 }
                 catch (Forms.StringNotIntException)
                 {
+                    //Informs the user that an ID must only contain numbers.
                     this.EditInfo.Text = "ID must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
                 }
 
                 try
                 {
+                    //Checks wether the ZIP contains only numbers.
                     zip = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateZip.Text);
                 }
                 catch (Forms.StringNotIntException)
                 {
+                    //Informs the user that a ZIP must only contain numbers.
                     this.EditInfo.Text = "Zip must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
                 }
 
                 try
                 {
+                    //Checks wether the rent contains only numbers.
                     rent = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateRent.Text);
                 }
                 catch (Forms.StringNotIntException)
                 {
+                    //Informs the user that rent must only contain numbers.
                     this.EditInfo.Text = "Rent must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
                 }
                 try
                 {
+                    //Checks wether the Square Feet attribute only contains numbers.
                     sqrft = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateSqrft.Text);
                 }
                 catch (Forms.StringNotIntException)
                 {
+                    //INforms the user that Square Feet must only contain numbers.
                     this.EditInfo.Text = "Square Feet must only contain numbers 0 to 9";
                     throw new Forms.StringNotIntException();
                 }
                 try
                 {
+                    //Attempts to create a new Address attribute. If Street address contains any special characters the constructor throws a SpecialCharException.
+                    //If the City contains anything other than letters the constructor throws a SpecialCharException.
                     a = new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text));
                 }
                 catch (Buildings.SpecialCharException)
                 {
+                    //Informs the user that Street can only contain numbers and letters, and City can only contain letters.
                     this.EditInfo.Text = "Street address must only contain letters A-Ö and numbers 0 to 9. And City can only contain letters A-Ö.";
                 }
+                //Saves the path and name of the selected image to a new variable.
                 string imageLocation = this.DisplayImage.ImageLocation;
 
+                //Checks wether the estate type is either Shop or Warehouse.
                 if(EstateTypeMenu.Text == "Shop" || EstateTypeMenu.Text == "Warehouse")
                 {
+                    //Shop and Warehouse can't be of the legal type Tenement.
                     if (EstateLegalMenu.Text == "Tenement")
                     {
+                        //Informs the user of the issue mentioned above.
                         this.EditInfo.Text = "Shops and Warehouses cant have Tenement as legal type.";
                         throw new Exception();
                     }

@@ -31,6 +31,7 @@ namespace Assignment1
         private void InitializeComponent()
         {
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.NumberOfHiddenItems = new System.Windows.Forms.Label();
             this.SearchGroupBox = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -80,7 +81,6 @@ namespace Assignment1
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.NumberOfHiddenItems = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).BeginInit();
@@ -104,6 +104,15 @@ namespace Assignment1
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "House List";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // NumberOfHiddenItems
+            // 
+            this.NumberOfHiddenItems.AutoSize = true;
+            this.NumberOfHiddenItems.Location = new System.Drawing.Point(3, 209);
+            this.NumberOfHiddenItems.Name = "NumberOfHiddenItems";
+            this.NumberOfHiddenItems.Size = new System.Drawing.Size(75, 13);
+            this.NumberOfHiddenItems.TabIndex = 32;
+            this.NumberOfHiddenItems.Text = "0 hidden items";
             // 
             // SearchGroupBox
             // 
@@ -211,7 +220,6 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
-            this.SearchBoxLegal.SelectedIndex = 0;
             this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
@@ -230,8 +238,6 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
-            //this.SearchBoxType.SelectedIndex = 0;
-            this.SearchBoxType.SelectedIndex = 0;
             this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
@@ -437,7 +443,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -1033,15 +1038,6 @@ namespace Assignment1
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 550);
             this.tabControl1.TabIndex = 0;
-            // 
-            // NumberOfHiddenItems
-            // 
-            this.NumberOfHiddenItems.AutoSize = true;
-            this.NumberOfHiddenItems.Location = new System.Drawing.Point(3, 209);
-            this.NumberOfHiddenItems.Name = "NumberOfHiddenItems";
-            this.NumberOfHiddenItems.Size = new System.Drawing.Size(75, 13);
-            this.NumberOfHiddenItems.TabIndex = 32;
-            this.NumberOfHiddenItems.Text = "0 hidden items";
             // 
             // Form1
             // 
