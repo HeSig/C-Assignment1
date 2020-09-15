@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Assignment1.Address">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAIAAAACAAAAAAAAgACAAIAAACAAAA=</HashCode>
+      <FileName>Buildings\Address.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Commercial">
+    <Position X="1.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Commercial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Residential">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Residential.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Estate">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="Assignment1.Estate.Legal" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Buildings\Estate.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ACACACAAAAAAAAAAAAAAAQAAASAIABACAAAKAAAACAA=</HashCode>
+      <FileName>Buildings\Estate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Assignment1.Form1">
+    <Position X="17.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>90EAAQACBGIQJBACoYDIQEkGBVMCBZgAAShSAgCVJIA=</HashCode>
+      <FileName>Form1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Program">
+    <Position X="14.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.Apartment">
+    <Position X="7.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Apartment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.House">
+    <Position X="9.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\House.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.Rowhouse">
+    <Position X="11.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Rowhouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.Shop">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Shop.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.Villa">
+    <Position X="4.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Villa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.BuildingTypes.Warehouse">
+    <Position X="0.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\BuildingTypes\Warehouse.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Buildings.SpecialCharException">
+    <Position X="19.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Buildings\SpecialCharException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Forms.DuplicateIDException">
+    <Position X="16" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\DuplicateIDException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Forms.ListManip">
+    <Position X="19.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAEAAAAEAAAAAAAAAAAAAAAABAAAAAAIA=</HashCode>
+      <FileName>Forms\ListManip.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Forms.StringNotIntException">
+    <Position X="21.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\StringNotIntException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Forms.VariablesCheck">
+    <Position X="16" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Forms\VariablesCheck.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Properties.Resources">
+    <Position X="16" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Assignment1.Properties.Settings">
+    <Position X="19.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Assignment1.Buildings.IEstate">
+    <Position X="14.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAASAAAAACAAAAAAAACAA=</HashCode>
+      <FileName>Buildings\IEstate.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Assignment1.Buildings.Countries">
+    <Position X="14.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iv9xbfbzI1rWmtgC3YUk9lZ6Chh6NfxGM3O0rBUA1b0=</HashCode>
+      <FileName>Buildings\Countries.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
