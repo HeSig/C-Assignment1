@@ -7,6 +7,7 @@ using Assignment1.Buildings;
 
 namespace Assignment1
 {
+    //Author: Henrik Sigeman and My Adolfsson.
     static class Program
     {
         /// <summary>
