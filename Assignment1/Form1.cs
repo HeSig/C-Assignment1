@@ -13,6 +13,7 @@ using System.IO;
 
 namespace Assignment1
 {
+    //Authors: Henrik and My
     public partial class Form1 : Form
     {
         //List of Estate objects, can be of any type.
@@ -222,7 +223,7 @@ namespace Assignment1
                     if (EstateLegalMenu.Text == "Tenement")
                     {
                         //Informs the user of the issue mentioned above.
-                        this.EditInfo.Text = "Shops and Warehouses cant have Tenement as legal type.";
+                        this.EditInfo.Text = "Shops and Warehouses can't have Tenement as legal type.";
                         throw new Exception();
                     }
                 }
@@ -344,6 +345,7 @@ namespace Assignment1
             }
         }
 
+        //Update the image, either with an existing file, or with a null.
         private void UpdateImage(string fileName)
         {
             if (fileName != null)
@@ -358,12 +360,13 @@ namespace Assignment1
             }
         }
 
+        //When you click the image upload button you are prompted to select a JPG or PNG image.
+        //The address of the file is saved, and the address is converted into a Bitmap (if there is an image)
         private void ImageUpload_Click(object sender, EventArgs e)
         {
             string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images";
             OpenFileDialog ofd = new OpenFileDialog()
             {
-                //InitialDirectory = @"C:\",
                 InitialDirectory = projectDirectory,
                 RestoreDirectory = true,
                 Filter = "JPG files (*.jpg)|*.jpg|PNG files (*.png)|*.png",
@@ -375,6 +378,7 @@ namespace Assignment1
             }
         }
 
+        //Delete the selected estate
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             Estates.Remove(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)), Estates.ToArray()));
@@ -383,6 +387,8 @@ namespace Assignment1
             EnableInfoBoxes(false);
         }
 
+
+        //Search tools. With each action on the search tools the list is updated with the new parameters.
         private void SearchBarStreet_TextChanged(object sender, EventArgs e)
         {
             UpdateEstateList();
