@@ -25,12 +25,26 @@ namespace Assignment1
         {
             Ownership,
             Rental,
+            Tenement,
+        }
+
+        //Returns the legal type as a string.
+        public string GetLegalType()
+        {
+            switch (LegalType)
+            {
+                case Legal.Ownership:
+                    return "Ownership";
+                case Legal.Rental:
+                    return "Rental";
+                case Legal.Tenement:
+                    return "Tenement";
+            }
+            return "No info.";
         }
 
         public Legal LegalType { get; protected set; }
         // Estate type. Residential and Commercial estates have different types, which is why they are defined there.
-        public enum EstateType { };
-        public EstateType BuildingType { get; protected set; }
 
         public string Image { get; private set; }
         public void SetAddress(Address address)
@@ -49,9 +63,9 @@ namespace Assignment1
             LegalType = legal;
         }
 
-        public Estate(int id, int sqrft, int rent, Address address, string image)
+        public Estate(int id, int sqrft, int rent, Address address, Legal legal, string image)
         {
-            Init(id, sqrft, rent, address, image);
+            Init(id, sqrft, rent, address, legal, image);
         }
 
         public Estate()
@@ -59,11 +73,8 @@ namespace Assignment1
 
         }
 
-        public void Init(int id, int sqrft, int rent, Address address, string image)
+        public void Init(int id, int sqrft, int rent, Address address, Legal legal, string image)
         {
-            if(Category == null) { 
-                Category = "Commercial";
-            }
             Id = id;
             try
             {
@@ -72,20 +83,15 @@ namespace Assignment1
             {
                 throw specialCharException;
             }
-            
+            LegalType = legal;
             Sqrft = sqrft;
             Rent = rent;
             Image = image;
         }
 
-        public virtual string GetLegalType()
-        {
-            return "";
-        }
-
         public virtual string GetEstateType()
         {
-            return "";
+            return Category;
         }
     }
 
