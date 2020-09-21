@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment1.ListManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,24 +10,24 @@ namespace Assignment1.Forms
     public class ListManip
     {
         //Get Estate instance by its ID;
-        public static Estate GetEstateByID(int _ID, Estate[] _Estates)
+        public static Estate GetEstateByID(int _ID, EstateManager _Estates)
         {
-            for (int i = 0; i < _Estates.Length; i++)
+            for (int i = 0; i < _Estates.Count; i++)
             {
-                if (_Estates[i].Id == _ID)
+                if (_Estates.GetAt(i).Id == _ID)
                 {
-                    return _Estates[i];
+                    return _Estates.GetAt(i);
                 }
             }
             return null;
         }
 
         //Get the Estates position within the Estate List by its ID
-        public static int GetEstateSearchListPositionByEstateID(int _ID, Estate[] _Estates)
+        public static int GetEstateSearchListPositionByEstateID(int _ID, EstateManager _Estates)
         {
-            for (int i = 0; i < _Estates.Length; i++)
+            for (int i = 0; i < _Estates.Count; i++)
             {
-                if (_Estates[i].Id == _ID)
+                if (_Estates.GetAt(i).Id == _ID)
                 {
                     return i;
                 }
@@ -54,7 +55,7 @@ namespace Assignment1.Forms
         }
 
         //Get the Estate object from the index of the Estate Display List.
-        public static Estate GetEstateFromList(int _listIndex, String[] _EstateListItems, Estate[] _Estates)
+        public static Estate GetEstateFromList(int _listIndex, String[] _EstateListItems, EstateManager _Estates)
         {
             string estateListItem = "";
             if (_listIndex < 0)

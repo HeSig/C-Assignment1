@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Assignment1;
 using Assignment1.Buildings.BuildingTypes;
 using System.IO;
+using Assignment1.ListManager;
 
 namespace Assignment1
 {
@@ -17,7 +18,7 @@ namespace Assignment1
     public partial class Form1 : Form
     {
         //List of Estate objects, can be of any type.
-        LinkedList<Estate> Estates;
+        EstateManager Estates;
         //All the boxes in the edit-part of the window, organized for easy manipulation.
         TextBox[] EstateInfoBoxes;
         //List of Estate objects converted into strings to be shown in the list of estates in the list part of the window.
@@ -32,16 +33,16 @@ namespace Assignment1
         {
             InitializeComponent();
             InitializeForm();
-            Estates = new LinkedList<Estate>();
+            Estates = new EstateManager();
 
             //Create Estates and add them to the list.
-            Estates.AddLast(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
-            Estates.AddLast(new Villa(2, 500, 5000, new Address("Sopgatan 11", 42736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
-            Estates.AddLast(new Rowhouse(3, 200, 4500, new Address("Kungsvägen 12", 31536, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Tenement, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
-            Estates.AddLast(new Shop(4, 150, 12000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
-            Estates.AddLast(new Warehouse(5, 1000, 7000, new Address("Kung Oskars Bro 4", 22336, "Luleå", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
-            Estates.AddLast(new Shop(6, 100, 5000, new Address("Storgatan 3", 12412, "Göteborg", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
-            Estates.AddLast(new Warehouse(7, 250, 2000, new Address("Möllan 4", 53135, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
+            Estates.Add(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
+            Estates.Add(new Villa(2, 500, 5000, new Address("Sopgatan 11", 42736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
+            Estates.Add(new Rowhouse(3, 200, 4500, new Address("Kungsvägen 12", 31536, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Tenement, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
+            Estates.Add(new Shop(4, 150, 12000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
+            Estates.Add(new Warehouse(5, 1000, 7000, new Address("Kung Oskars Bro 4", 22336, "Luleå", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
+            Estates.Add(new Shop(6, 100, 5000, new Address("Storgatan 3", 12412, "Göteborg", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
+            Estates.Add(new Warehouse(7, 250, 2000, new Address("Möllan 4", 53135, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
 
             UpdateEstateList();
         }
@@ -109,7 +110,7 @@ namespace Assignment1
             //If they do they are added to the list, if not they are hidden from view.
             for (int i = 0; i < Estates.Count; i++)
             {
-                Estate e = Estates.ElementAt(i);
+                Estate e = Estates.GetAt(i);
                 if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
                 {
                     //Create a string representation of an Estate as such: ID : Street, City, Country.
@@ -153,7 +154,7 @@ namespace Assignment1
                 try
                 {
                     //Checks wether the ID is unique, or the currently selected estate has the same ID. If not it throws an InvalidIDException.
-                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate, EstateListItems.ToArray(), Estates.ToArray()), Estates.ToArray());
+                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate, EstateListItems.ToArray(), Estates), Estates);
                 }
                 catch (Forms.DuplicateIDException)
                 {
@@ -258,12 +259,12 @@ namespace Assignment1
                 //If not, then it creates a new estate and adds it to the top of the list.
                 if (!createNew)
                 {
-                    Estates.Find(Estates.ElementAt(selectedEstate)).Value = res;
+                    Estates.ChangeAt(res, selectedEstate);
                     EditInfo.Text = "Estate edited succesfully!";
                 }
                 else
                 {
-                    Estates.AddFirst(res);
+                    Estates.Add(res);
                     selectedEstate = 0;
 
                     EditInfo.Text = "Estate created succesfully!";
@@ -289,8 +290,8 @@ namespace Assignment1
             try
             {
                 ListBox listbox = (ListBox)sender;
-                Estate building = Forms.ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates.ToArray());
-                selectedEstate = Forms.ListManip.GetEstateSearchListPositionByEstateID(building.Id, Estates.ToArray());
+                Estate building = Forms.ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates);
+                selectedEstate = Forms.ListManip.GetEstateSearchListPositionByEstateID(building.Id, Estates);
                 this.EstateId.Text = building.Id.ToString();
                 this.EstateStreet.Text = building.Address.Street.ToString();
                 this.EstateZip.Text = building.Address.Zip.ToString();
@@ -381,7 +382,7 @@ namespace Assignment1
         //Delete the selected estate
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Estates.Remove(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)), Estates.ToArray()));
+            Estates.DeleteEstate(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)), Estates));
             selectedEstate = -1;
             UpdateEstateList();
             EnableInfoBoxes(false);

@@ -84,6 +84,9 @@
     <Compile Include="Forms\ListManip.cs" />
     <Compile Include="Forms\StringNotIntException.cs" />
     <Compile Include="Forms\VariablesCheck.cs" />
+    <Compile Include="ListManager\EstateManager.cs" />
+    <Compile Include="ListManager\IListManager.cs" />
+    <Compile Include="ListManager\ListManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -128,8 +131,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ListManager\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
