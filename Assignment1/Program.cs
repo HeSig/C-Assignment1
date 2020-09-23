@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Assignment1.Buildings;
+using Assignment1.ListManager;
 
 namespace Assignment1
 {
@@ -19,6 +20,8 @@ namespace Assignment1
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            ListManager<T> listManager = new ListManager<T>();
 
         }
     }

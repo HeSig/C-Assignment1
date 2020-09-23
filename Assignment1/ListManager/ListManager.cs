@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Assignment1.ListManager
 {
@@ -89,6 +90,12 @@ namespace Assignment1.ListManager
 
         public bool XMLSerialize(string fileName)
         {
+
+            XmlSerializer managerSerializer = new XmlSerializer(m_list.GetType());
+            String path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(path + "\\" + fileName + ".xml");
+            managerSerializer.Serialize(writer, m_list);
+            writer.Close();
             throw new NotImplementedException();
         }
     }
