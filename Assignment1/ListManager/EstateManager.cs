@@ -8,6 +8,10 @@ namespace Assignment1.ListManager
 {
     public class EstateManager : ListManager<Estate>
     {
+
+
+
+
         public void DeleteEstate(Estate estate)
         {
             for(int i = 0; i < Count; i++)
@@ -19,6 +23,4 @@ namespace Assignment1.ListManager
             }
         }
     }
-
-
 }

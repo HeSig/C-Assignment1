@@ -81,6 +81,18 @@ namespace Assignment1
             this.DisplayImage = new System.Windows.Forms.PictureBox();
             this.EstateList = new System.Windows.Forms.ListBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileOpen = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileSave = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuFileSaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuXML = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuXMLImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuXMLExport = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).BeginInit();
@@ -88,6 +100,7 @@ namespace Assignment1
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayImage)).BeginInit();
             this.tabControl1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -220,7 +233,6 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
-            this.SearchBoxLegal.SelectedIndex = 0;
             this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
@@ -239,7 +251,6 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
-            this.SearchBoxType.SelectedIndex = 0;
             this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
@@ -445,7 +456,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -1036,18 +1046,110 @@ namespace Assignment1
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(776, 550);
             this.tabControl1.TabIndex = 0;
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuFile});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // mnuFile
+            // 
+            this.mnuFile.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuNew,
+            this.mnuFileOpen,
+            this.mnuFileSave,
+            this.mnuFileSaveAs,
+            this.toolStripSeparator1,
+            this.mnuXML,
+            this.toolStripSeparator2,
+            this.mnuExit});
+            this.mnuFile.Name = "mnuFile";
+            this.mnuFile.Size = new System.Drawing.Size(37, 20);
+            this.mnuFile.Text = "File";
+            // 
+            // mnuNew
+            // 
+            this.mnuNew.Name = "mnuNew";
+            this.mnuNew.Size = new System.Drawing.Size(180, 22);
+            this.mnuNew.Text = "New";
+            this.mnuNew.Click += new System.EventHandler(this.mnuNew_Click);
+            // 
+            // mnuFileOpen
+            // 
+            this.mnuFileOpen.Name = "mnuFileOpen";
+            this.mnuFileOpen.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileOpen.Text = "Open ...";
+            // 
+            // mnuFileSave
+            // 
+            this.mnuFileSave.Name = "mnuFileSave";
+            this.mnuFileSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSave.Text = "Save";
+            this.mnuFileSave.Click += new System.EventHandler(this.mnuFileSave_Click);
+            // 
+            // mnuFileSaveAs
+            // 
+            this.mnuFileSaveAs.Name = "mnuFileSaveAs";
+            this.mnuFileSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSaveAs.Text = "Save as ...";
+            this.mnuFileSaveAs.Click += new System.EventHandler(this.mnuFileSaveAs_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // mnuXML
+            // 
+            this.mnuXML.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuXMLImport,
+            this.mnuXMLExport});
+            this.mnuXML.Name = "mnuXML";
+            this.mnuXML.Size = new System.Drawing.Size(180, 22);
+            this.mnuXML.Text = "XML";
+            // 
+            // mnuXMLImport
+            // 
+            this.mnuXMLImport.Name = "mnuXMLImport";
+            this.mnuXMLImport.Size = new System.Drawing.Size(187, 22);
+            this.mnuXMLImport.Text = "Import from XML File";
+            // 
+            // mnuXMLExport
+            // 
+            this.mnuXMLExport.Name = "mnuXMLExport";
+            this.mnuXMLExport.Size = new System.Drawing.Size(187, 22);
+            this.mnuXMLExport.Text = "Export to XML File";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // mnuExit
+            // 
+            this.mnuExit.Name = "mnuExit";
+            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.Text = "Exit";
+            this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 574);
+            this.ClientSize = new System.Drawing.Size(800, 579);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Homes for Sale";
             this.tabPage1.ResumeLayout(false);
@@ -1060,7 +1162,10 @@ namespace Assignment1
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DisplayImage)).EndInit();
             this.tabControl1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1123,6 +1228,18 @@ namespace Assignment1
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label NumberOfHiddenItems;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mnuFile;
+        private System.Windows.Forms.ToolStripMenuItem mnuNew;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileOpen;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileSave;
+        private System.Windows.Forms.ToolStripMenuItem mnuFileSaveAs;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem mnuXML;
+        private System.Windows.Forms.ToolStripMenuItem mnuXMLImport;
+        private System.Windows.Forms.ToolStripMenuItem mnuXMLExport;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem mnuExit;
     }
 }
 

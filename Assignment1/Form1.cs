@@ -27,6 +27,8 @@ namespace Assignment1
         int selectedEstate;
         //Flag which tells the program wether to create a new estate to add to the list, or to just replace an item within the list.
         Boolean createNew;
+        //Flag which tells the program wether the estates have been saved yet, or not, so when the user uses the "Save" function it acts as "Save as ..."
+        Boolean newFile;
 
         // Main method.
         public Form1()
@@ -34,6 +36,7 @@ namespace Assignment1
             InitializeComponent();
             InitializeForm();
             Estates = new EstateManager();
+            newFile = true;
 
             //Create Estates and add them to the list.
             Estates.Add(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
@@ -430,6 +433,32 @@ namespace Assignment1
         {
             SearchSqrftDisplay.Text = EstateSqrftSlider.Value.ToString();
             UpdateEstateList();
+        }
+
+        // File Menu functions
+        private void mnuNew_Click(object sender, EventArgs e)
+        {
+            newFile = true;
+            Estates.DeleteAll();
+            UpdateEstateList();
+        }
+
+        private void mnuFileSaveAs_Click(object sender, EventArgs e)
+        {
+            newFile = false;
+        }
+
+        private void mnuFileSave_Click(object sender, EventArgs e)
+        {
+            if (newFile)
+            {
+                mnuFileSaveAs_Click(sender, e);
+            }
+        }
+
+        private void mnuExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
