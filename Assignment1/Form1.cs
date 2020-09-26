@@ -11,6 +11,7 @@ using Assignment1;
 using Assignment1.Buildings.BuildingTypes;
 using System.IO;
 using Assignment1.ListManager;
+using Assignment1.Buildings;
 
 namespace Assignment1
 {
@@ -82,6 +83,8 @@ namespace Assignment1
         private void UpdateEstateList()
         {
             String street = this.SearchBarStreet.Text;
+            List<Estate> res = Estates.ToList();
+
             string zip = "";
             int hiddenCount = 0;
             if (SearchBarZip.Text != null)
@@ -93,6 +96,9 @@ namespace Assignment1
             if (this.SearchBoxCountry.SelectedIndex != 0)
             {
                 country = this.SearchBoxCountry.Text;
+                Countries c = (Countries) Enum.Parse(typeof(Countries), country);
+                if (Estates.GetCountryDictionary().Contains(c)) res = Estates.GetCountryDictionary().Get(c);
+
             }
             String legal = "";
             if (this.SearchBoxLegal.SelectedIndex != 0)
@@ -109,11 +115,13 @@ namespace Assignment1
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
 
+            
+
             //This for-loop goes through every Estate in the list of Estates and checks wether the filter-attributes correspond to the attributes of the estate.
             //If they do they are added to the list, if not they are hidden from view.
-            for (int i = 0; i < Estates.Count; i++)
+            for (int i = 0; i < res.Count; i++)
             {
-                Estate e = Estates.GetAt(i);
+                Estate e = res[i];
                 if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
                 {
                     //Create a string representation of an Estate as such: ID : Street, City, Country.

@@ -14,6 +14,7 @@ namespace Assignment1.ListManager
         public ListManager()
         {
             m_list = new List<T>();
+            Console.WriteLine(object.ReferenceEquals(m_list, null));
         }
 
         public bool Add(T aType)
@@ -90,6 +91,16 @@ namespace Assignment1.ListManager
         public bool XMLSerialize(string fileName)
         {
             throw new NotImplementedException();
+        }
+
+        public List<T> ToList()
+        {
+            List<T> res = new List<T>();
+            for(int i = 0; i < m_list.Count; i++)
+            {
+                res.Add(m_list[i]);
+            }
+            return res;
         }
     }
 }

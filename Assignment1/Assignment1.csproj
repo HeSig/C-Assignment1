@@ -84,6 +84,7 @@
     <Compile Include="Forms\ListManip.cs" />
     <Compile Include="Forms\StringNotIntException.cs" />
     <Compile Include="Forms\VariablesCheck.cs" />
+    <Compile Include="ListManager\CountryDictionary.cs" />
     <Compile Include="ListManager\EstateManager.cs" />
     <Compile Include="ListManager\IListManager.cs" />
     <Compile Include="ListManager\ListManager.cs" />
