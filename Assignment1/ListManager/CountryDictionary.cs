@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Assignment1.Buildings;
 
 namespace Assignment1.ListManager
@@ -26,29 +22,50 @@ namespace Assignment1.ListManager
             return CDic[country];
         }
 
-        public void Add(Countries country, Estate estate)
+        public void Add(Estate estate)
         {
-            if (CDic.ContainsKey(country))
+            if (CDic.ContainsKey(estate.Address.country))
             {
-                CDic[country].Add(estate);
+                CDic[estate.Address.country].Add(estate);
             }
             else
             {
                 List<Estate> res = new List<Estate>();
                 res.Add(estate);
-                CDic.Add(country, res);
+                CDic.Add(estate.Address.country, res);
             }
         }
 
-        public void Change(Countries country, Estate estate)
+        public void Change(Countries country, List<Estate> estates)
         {
-            /*
-            if (CDic.ContainsKey(country))
+            CDic.Remove(country);
+            CDic.Add(country, estates);
+        }
+
+        public void Remove(Estate estate)
+        {
+            CDic[estate.Address.country].Remove(estate);
+        }
+
+        public void Replace(Estate changeFrom, Estate changeTo)
+        {
+            if(changeFrom.Address.country == changeTo.Address.country)
             {
-                CDic.Remove(country);
-                CDic.Add(country, estate);
+                List<Estate> res = CDic[changeFrom.Address.country];
+                for(int i = 0; i < res.Count; i++)
+                {
+                    if(res[i] == changeFrom)
+                    {
+                        res[i] = changeTo;
+                        break;
+                    }
+                }
             }
-            */
+            else
+            {
+                Remove(changeFrom);
+                Add(changeTo);
+            }
         }
 
         public void Delete(Countries country)

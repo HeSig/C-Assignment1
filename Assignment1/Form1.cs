@@ -162,10 +162,11 @@ namespace Assignment1
                 int rent = -1;
                 int sqrft = -1;
                 Address a = null;
+
                 try
                 {
                     //Checks wether the ID is unique, or the currently selected estate has the same ID. If not it throws an InvalidIDException.
-                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(selectedEstate, EstateListItems.ToArray(), Estates), Estates);
+                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(EstateList.SelectedIndex, EstateListItems.ToArray(), Estates), Estates);
                 }
                 catch (Forms.DuplicateIDException)
                 {

@@ -23,12 +23,20 @@ namespace Assignment1.ListManager
                     DeleteAt(i);
                 }
             }
+            cd.Remove(estate);
+        }
+
+        new public void ChangeAt(Estate estate, int selectedEstate)
+        {
+            Estate res = base.GetAt(selectedEstate);
+            base.ChangeAt(estate, selectedEstate);
+            cd.Replace(res, estate);
         }
 
         new public bool Add(Estate aType)
         {
             base.Add(aType);
-            cd.Add(aType.Address.country, aType);
+            cd.Add(aType);
             return true;
         }
 
