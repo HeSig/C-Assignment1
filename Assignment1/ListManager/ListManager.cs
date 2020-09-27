@@ -38,7 +38,7 @@ namespace Assignment1.ListManager
                 using (Stream stream = File.Open(fileName, FileMode.Create))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
-                    var dataResult = (EstateManager)binaryFormatter.Serialize(stream, m_list);
+                    binaryFormatter.Serialize(stream, m_list);
 
                     return true;
                 } 
