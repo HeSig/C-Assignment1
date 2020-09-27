@@ -19,9 +19,15 @@ namespace Assignment1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
 
-            ListManager<T> listManager = new ListManager<T>();
+            ListManager<Estate> listManager = new ListManager<Estate>();
+            Estate testEstate1 = new Estate(1, 2, 3, "Storgatan", );
+
+            //int id, int sqrft, int rent, Address address, Legal legal, string image
+
+            List<Estate> testEstateList = new List<Estate>();
+
 
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -30,7 +32,21 @@ namespace Assignment1.ListManager
 
         public bool BinarySerialize(string fileName)
         {
-            throw new NotImplementedException();
+            try
+            {
+
+                using (Stream stream = File.Open(fileName, FileMode.Create))
+                {
+                    BinaryFormatter binaryFormatter = new BinaryFormatter();
+                    var dataResult = (EstateManager)binaryFormatter.Serialize(stream, m_list);
+
+                    return true;
+                } 
+            } catch(Exception e)
+            {
+                throw e;
+            }
+            
         }
 
         public bool ChangeAt(T aType, int anIndex)

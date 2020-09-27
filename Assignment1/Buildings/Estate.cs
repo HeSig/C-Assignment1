@@ -1,23 +1,31 @@
 ﻿using Assignment1.Buildings;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    
+    [Serializable]
     //Abstract class for all Estates. 
     public class Estate : IEstate
     {
+        [DisplayName("Estate Id")]
         public int Id { get; private set; }
+
+        [DisplayName("Address")]
         public Address Address { get; private set; }
 
+        [DisplayName("Square feet")]
         public int Sqrft { get; private set; }
+
+        [DisplayName("Rent")]
         public int Rent { get; private set; }
 
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.
+        [DisplayName("Category")]
         public string Category { get; protected set; }
 
         // Legal type. Residential replaces this with its own legal types.
