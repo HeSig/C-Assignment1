@@ -5,23 +5,25 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Assignment1
 {
     [Serializable]
+    [XmlRoot("Estate")]
     //Abstract class for all Estates. 
     public class Estate : IEstate
     {
-        [DisplayName("Estate Id")]
+        [XmlElement("Estate Id")]
         public int Id { get; private set; }
 
-        [DisplayName("Address")]
+        [XmlElement("Address")]
         public Address Address { get; private set; }
 
-        [DisplayName("Square feet")]
+        [XmlElement("Square feet")]
         public int Sqrft { get; private set; }
 
-        [DisplayName("Rent")]
+        [XmlElement("Rent")]
         public int Rent { get; private set; }
 
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.

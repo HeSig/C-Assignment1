@@ -21,11 +21,13 @@ namespace Assignment1
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            
+
 
             //int id, int sqrft, int rent, Address address, Legal legal, string image
+            //string _street, int _zip, string _city, Countries _country
 
-            List<Estate> testEstateList = new List<Estate>();
+            Address address = new Address("Storgatan 22", 23443, "Malmö", Countries.Sverige);
+            Estate testEstate = new Estate(1, 3, 45, address, Estate.Legal.Ownership, "House.jpg");
 
 
         }
