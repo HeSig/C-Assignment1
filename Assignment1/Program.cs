@@ -21,8 +21,7 @@ namespace Assignment1
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
 
-            ListManager<Estate> listManager = new ListManager<Estate>();
-            Estate testEstate1 = new Estate(1, 2, 3, "Storgatan", );
+            
 
             //int id, int sqrft, int rent, Address address, Legal legal, string image
 

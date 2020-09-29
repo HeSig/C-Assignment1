@@ -11,7 +11,7 @@ namespace Assignment1.ListManager
 {
     public class ListManager<T> : IListManager<T>
     {
-        readonly List<T> m_list;
+        private List<T> m_list;
         public int Count { get {return m_list.Count();}}
 
         public ListManager()
@@ -27,14 +27,33 @@ namespace Assignment1.ListManager
 
         public bool BinaryDeSerialize(string fileName)
         {
-            throw new NotImplementedException();
+
+            if (!File.Exists(fileName)) 
+            { 
+                String errorMessage = $"The file {fileName}  was not found. "; 
+                throw (new FileNotFoundException(errorMessage)); 
+            }
+            try
+            {
+                using (Stream stream = File.Open(fileName, FileMode.Create))
+                {
+                    BinaryFormatter binaryFormatter = new BinaryFormatter();
+                    m_list = (List<T>)binaryFormatter.Deserialize(stream);
+
+                    return true;
+                }
+            } catch (Exception e)
+            {
+                throw e;
+                return false;
+            }
+            
         }
 
         public bool BinarySerialize(string fileName)
         {
             try
             {
-
                 using (Stream stream = File.Open(fileName, FileMode.Create))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
@@ -45,6 +64,7 @@ namespace Assignment1.ListManager
             } catch(Exception e)
             {
                 throw e;
+                return false;
             }
             
         }
@@ -106,13 +126,20 @@ namespace Assignment1.ListManager
 
         public bool XMLSerialize(string fileName)
         {
-
-            XmlSerializer managerSerializer = new XmlSerializer(m_list.GetType());
-            String path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            System.IO.StreamWriter writer = new System.IO.StreamWriter(path + "\\" + fileName + ".xml");
-            managerSerializer.Serialize(writer, m_list);
-            writer.Close();
-            throw new NotImplementedException();
+            try
+            {
+                XmlSerializer managerSerializer = new XmlSerializer(typeof(List<T>));
+                //String path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                StreamWriter writer = new StreamWriter(fileName, false);
+                managerSerializer.Serialize(writer, m_list);
+                writer.Close();
+                throw new NotImplementedException();
+            } catch (Exception e)
+            {
+                throw e;
+                return false;
+            }
+           
         }
     }
 }
