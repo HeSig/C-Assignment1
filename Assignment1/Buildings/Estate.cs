@@ -15,20 +15,20 @@ namespace Assignment1
     public class Estate : IEstate
     {
         [XmlElement("Estate Id")]
-        public int Id { get; private set; }
+        public int Id { get; /*private*/ set; }
 
         [XmlElement("Address")]
-        public Address Address { get; private set; }
+        public Address Address { get; /*private*/ set; }
 
         [XmlElement("Square feet")]
-        public int Sqrft { get; private set; }
+        public int Sqrft { get; /*private*/ set; }
 
         [XmlElement("Rent")]
-        public int Rent { get; private set; }
+        public int Rent { get; /*private*/ set; }
 
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.
         [DisplayName("Category")]
-        public string Category { get; protected set; }
+        public string Category { get; /*protected*/ set; }
 
         // Legal type. Residential replaces this with its own legal types.
         public enum Legal
@@ -53,10 +53,10 @@ namespace Assignment1
             return "No info.";
         }
 
-        public Legal LegalType { get; protected set; }
+        public Legal LegalType { get; /*protected*/ set; }
         // Estate type. Residential and Commercial estates have different types, which is why they are defined there.
 
-        public string Image { get; private set; }
+        public string Image { get; /*private*/ set; }
         public void SetAddress(Address address)
         {
             try

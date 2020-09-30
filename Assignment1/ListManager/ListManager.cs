@@ -28,11 +28,12 @@ namespace Assignment1.ListManager
         public bool BinaryDeSerialize(string fileName)
         {
 
-            if (!File.Exists(fileName)) 
+            /*if (!File.Exists(fileName)) 
             { 
                 String errorMessage = $"The file {fileName}  was not found. "; 
+                //create file
                 throw (new FileNotFoundException(errorMessage)); 
-            }
+            } */
             try
             {
                 using (Stream stream = File.Open(fileName, FileMode.Create))
@@ -44,7 +45,6 @@ namespace Assignment1.ListManager
                 }
             } catch (Exception e)
             {
-                throw e;
                 return false;
             }
             
@@ -63,7 +63,6 @@ namespace Assignment1.ListManager
                 } 
             } catch(Exception e)
             {
-                throw e;
                 return false;
             }
             
@@ -133,7 +132,7 @@ namespace Assignment1.ListManager
                 StreamWriter writer = new StreamWriter(fileName, false);
                 managerSerializer.Serialize(writer, m_list);
                 writer.Close();
-                throw new NotImplementedException();
+                return true;
             } catch (Exception e)
             {
                 throw e;
