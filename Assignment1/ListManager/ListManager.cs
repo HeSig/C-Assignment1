@@ -29,6 +29,7 @@ namespace Assignment1.ListManager
 
         public bool BinaryDeSerialize(string fileName)
         {
+            Console.WriteLine(fileName);
             try
             {
                 using (Stream stream = File.Open(fileName, FileMode.Open))
@@ -50,7 +51,7 @@ namespace Assignment1.ListManager
         {
             try
             {
-                using (Stream stream = File.Open(fileName + ".txt", FileMode.Create))
+                using (Stream stream = File.Open(fileName, FileMode.Create))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     binaryFormatter.Serialize(stream, m_list);
@@ -59,6 +60,7 @@ namespace Assignment1.ListManager
                 } 
             } catch(Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
             
@@ -130,6 +132,7 @@ namespace Assignment1.ListManager
                 return true;
             } catch (Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
            

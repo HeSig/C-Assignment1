@@ -20,8 +20,8 @@ namespace Assignment1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
-
+            Application.Run(new Form1());
+            /*
 
             //tests for the binarySerialize, binaryDeserialize and XMLSerialize in ListManager
 
@@ -34,7 +34,7 @@ namespace Assignment1
             Estate testEstate2 = new Estate(2, 3, 45, address2, Estate.Legal.Ownership, "House.jpg");
             Estate testEstate3 = new Estate(3, 3, 45, address3, Estate.Legal.Ownership, "House.jpg");
 
-            String path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\Test";
+            String path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\Tester";
 
             ListManager<Estate> testListManager = new ListManager<Estate>();
             testListManager.Add(testEstate1);
@@ -45,7 +45,7 @@ namespace Assignment1
             bool serializeBoolResult = testListManager.BinarySerialize(path);
             Console.WriteLine("serialize binary: " + serializeBoolResult);
 
-            //testListManager.DeleteAll();
+            testListManager.DeleteAll();
 
             //testing binaryDeserialize in ListManager
             bool deserializeBoolResult = testListManager.BinaryDeSerialize(path);
@@ -59,7 +59,7 @@ namespace Assignment1
             //testing XMLSerialize in ListManager
             bool xmlExportBoolResult = testListManager.XMLSerialize(path);
             Console.WriteLine("XML export: " + xmlExportBoolResult);
-
+            */
         }
     }
 }

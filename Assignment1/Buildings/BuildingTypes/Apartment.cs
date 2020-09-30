@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Assignment1.Buildings.BuildingTypes
 {
+    [Serializable]
     class Apartment : Residential
     {
+        public Apartment()
+        {
+            Category = "Apartment";
+        }
 
         public Apartment(int _id, int _sqrft, int _rent, Address _address, Residential.Legal _legal, string _image) : base(_id, _sqrft, _rent, _address, _legal, _image)
         {

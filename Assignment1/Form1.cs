@@ -31,11 +31,14 @@ namespace Assignment1
         //Flag which tells the program wether the estates have been saved yet, or not, so when the user uses the "Save" function it acts as "Save as ..."
         Boolean newFile;
 
+        string currentSaveFilePath;
+
         // Main method.
         public Form1()
         {
             InitializeComponent();
             InitializeForm();
+            currentSaveFilePath = "";
             Estates = new EstateManager();
             newFile = true;
 
@@ -116,8 +119,8 @@ namespace Assignment1
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
 
-            
 
+            Console.WriteLine("RES COUNT: " + res.Count);
             //This for-loop goes through every Estate in the list of Estates and checks wether the filter-attributes correspond to the attributes of the estate.
             //If they do they are added to the list, if not they are hidden from view.
             for (int i = 0; i < res.Count; i++)
@@ -457,9 +460,12 @@ namespace Assignment1
         {
             //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles";
             var ofd = new FolderBrowserDialog();
+            ofd.SelectedPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
+
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Estates.BinarySerialize(ofd.SelectedPath + "\\DoingATest");
+                Estates.BinarySerialize(ofd.SelectedPath + "\\DoingATest.txt");
+                currentSaveFilePath = ofd.SelectedPath + "\\DoingATest.txt";
                 //UpdateImage(ofd.FileName);
             }
 
@@ -473,6 +479,10 @@ namespace Assignment1
             if (newFile)
             {
                 mnuFileSaveAs_Click(sender, e);
+            }
+            else
+            {
+                Estates.BinarySerialize(currentSaveFilePath);
             }
         }
 
@@ -493,21 +503,40 @@ namespace Assignment1
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Console.WriteLine(ofd.FileName);
                 Estates.BinaryDeSerialize(ofd.FileName);
-                Console.WriteLine(Estates.GetAt(0).Id);
+                //Console.WriteLine(Estates.GetAt(0).Id);
                 UpdateEstateList();
             }
         }
 
         private void mnuXMLImport_Click(object sender, EventArgs e)
         {
-
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = projectDirectory,
+                RestoreDirectory = true,
+                Filter = "XML files (*.xml)|*.xml",
+                ReadOnlyChecked = true,
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                //Estates.xmlDeSerialize(ofd.FileName);
+                UpdateEstateList();
+            }
         }
 
         private void mnuXMLExport_Click(object sender, EventArgs e)
         {
+            //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles";
+            var ofd = new FolderBrowserDialog();
+            ofd.SelectedPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
 
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Estates.XMLSerialize(ofd.SelectedPath + "\\DoingATest");
+                Console.WriteLine("Done");
+            }
         }
     }
 }
