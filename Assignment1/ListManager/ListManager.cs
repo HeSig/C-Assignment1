@@ -17,7 +17,7 @@ namespace Assignment1.ListManager
         public ListManager()
         {
             m_list = new List<T>();
-            Console.WriteLine(object.ReferenceEquals(m_list, null));
+            //Console.WriteLine(object.ReferenceEquals(m_list, null));
         }
 
         public bool Add(T aType)
@@ -31,7 +31,7 @@ namespace Assignment1.ListManager
         {
             try
             {
-                using (Stream stream = File.Open(fileName +".txt", FileMode.Open))
+                using (Stream stream = File.Open(fileName, FileMode.Open))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     m_list = (List<T>)binaryFormatter.Deserialize(stream);
@@ -40,6 +40,7 @@ namespace Assignment1.ListManager
                 }
             } catch (Exception e)
             {
+                Console.WriteLine(e);
                 return false;
             }
             

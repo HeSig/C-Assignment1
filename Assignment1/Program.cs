@@ -45,6 +45,8 @@ namespace Assignment1
             bool serializeBoolResult = testListManager.BinarySerialize(path);
             Console.WriteLine("serialize binary: " + serializeBoolResult);
 
+            //testListManager.DeleteAll();
+
             //testing binaryDeserialize in ListManager
             bool deserializeBoolResult = testListManager.BinaryDeSerialize(path);
             Console.WriteLine("deserialize binary: " + deserializeBoolResult);
@@ -57,8 +59,6 @@ namespace Assignment1
             //testing XMLSerialize in ListManager
             bool xmlExportBoolResult = testListManager.XMLSerialize(path);
             Console.WriteLine("XML export: " + xmlExportBoolResult);
-
-
 
         }
     }

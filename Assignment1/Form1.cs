@@ -96,6 +96,7 @@ namespace Assignment1
             if (this.SearchBoxCountry.SelectedIndex != 0)
             {
                 country = this.SearchBoxCountry.Text;
+                //Console.WriteLine(country);
                 Countries c = (Countries) Enum.Parse(typeof(Countries), country);
                 if (Estates.GetCountryDictionary().Contains(c)) res = Estates.GetCountryDictionary().Get(c);
 
@@ -454,6 +455,16 @@ namespace Assignment1
 
         private void mnuFileSaveAs_Click(object sender, EventArgs e)
         {
+            //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles";
+            var ofd = new FolderBrowserDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Estates.BinarySerialize(ofd.SelectedPath + "\\DoingATest");
+                //UpdateImage(ofd.FileName);
+            }
+
+            //String path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\DoingTest";
+            //Estates.BinarySerialize(path);
             newFile = false;
         }
 
@@ -468,6 +479,35 @@ namespace Assignment1
         private void mnuExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void mnuFileOpen_Click(object sender, EventArgs e)
+        {
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            OpenFileDialog ofd = new OpenFileDialog()
+            {
+                InitialDirectory = projectDirectory,
+                RestoreDirectory = true,
+                Filter = "TXT files (*.txt)|*.txt",
+                ReadOnlyChecked = true,
+            };
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                Console.WriteLine(ofd.FileName);
+                Estates.BinaryDeSerialize(ofd.FileName);
+                Console.WriteLine(Estates.GetAt(0).Id);
+                UpdateEstateList();
+            }
+        }
+
+        private void mnuXMLImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuXMLExport_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

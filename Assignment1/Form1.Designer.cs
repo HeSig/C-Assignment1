@@ -456,6 +456,7 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
+            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -873,7 +874,6 @@ namespace Assignment1
             this.EditInfo.ReadOnly = true;
             this.EditInfo.Size = new System.Drawing.Size(143, 59);
             this.EditInfo.TabIndex = 22;
-            this.EditInfo.TextChanged += new System.EventHandler(this.EditInfo_TextChanged);
             // 
             // label11
             // 
@@ -1090,6 +1090,7 @@ namespace Assignment1
             this.mnuFileOpen.Name = "mnuFileOpen";
             this.mnuFileOpen.Size = new System.Drawing.Size(180, 22);
             this.mnuFileOpen.Text = "Open ...";
+            this.mnuFileOpen.Click += new System.EventHandler(this.mnuFileOpen_Click);
             // 
             // mnuFileSave
             // 
@@ -1124,12 +1125,14 @@ namespace Assignment1
             this.mnuXMLImport.Name = "mnuXMLImport";
             this.mnuXMLImport.Size = new System.Drawing.Size(187, 22);
             this.mnuXMLImport.Text = "Import from XML File";
+            this.mnuXMLImport.Click += new System.EventHandler(this.mnuXMLImport_Click);
             // 
             // mnuXMLExport
             // 
             this.mnuXMLExport.Name = "mnuXMLExport";
             this.mnuXMLExport.Size = new System.Drawing.Size(187, 22);
             this.mnuXMLExport.Text = "Export to XML File";
+            this.mnuXMLExport.Click += new System.EventHandler(this.mnuXMLExport_Click);
             // 
             // toolStripSeparator2
             // 
