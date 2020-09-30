@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
+    [Serializable]
     //Address class.
     public class Address
     {
@@ -72,7 +73,11 @@ namespace Assignment1
         }
         public Countries country;
 
-       
+        //empty construct for seralize
+        public Address()
+        {
+
+        }
 
         //Constructor for address class.
         public Address(string _street, int _zip, string _city, Countries _country)

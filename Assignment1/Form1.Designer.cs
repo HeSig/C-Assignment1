@@ -456,7 +456,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -874,6 +873,7 @@ namespace Assignment1
             this.EditInfo.ReadOnly = true;
             this.EditInfo.Size = new System.Drawing.Size(143, 59);
             this.EditInfo.TabIndex = 22;
+            this.EditInfo.TextChanged += new System.EventHandler(this.EditInfo_TextChanged);
             // 
             // label11
             // 

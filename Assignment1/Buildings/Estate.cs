@@ -1,24 +1,29 @@
 ﻿using Assignment1.Buildings;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Assignment1
 {
-    
+    [Serializable]
     //Abstract class for all Estates. 
+    //private set in the properties is  outcommented as of now to be able to be serialized in ListManager.
     public class Estate : IEstate
     {
-        public int Id { get; private set; }
-        public Address Address { get; private set; }
+        public int Id { get; /*private*/ set; }
 
-        public int Sqrft { get; private set; }
-        public int Rent { get; private set; }
+        public Address Address { get; /*private*/ set; }
+
+        public int Sqrft { get; /*private*/ set; }
+
+        public int Rent { get; /*private*/ set; }
 
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.
-        public string Category { get; protected set; }
+        public string Category { get; /*protected*/ set; }
 
         // Legal type. Residential replaces this with its own legal types.
         public enum Legal
@@ -43,10 +48,10 @@ namespace Assignment1
             return "No info.";
         }
 
-        public Legal LegalType { get; protected set; }
+        public Legal LegalType { get; /*protected*/ set; }
         // Estate type. Residential and Commercial estates have different types, which is why they are defined there.
 
-        public string Image { get; private set; }
+        public string Image { get; /*private*/ set; }
         public void SetAddress(Address address)
         {
             try

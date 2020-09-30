@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Assignment1.ListManager
 {
     public class ListManager<T> : IListManager<T>
     {
-        readonly List<T> m_list;
+        private List<T> m_list;
         public int Count { get {return m_list.Count();}}
 
         public ListManager()
@@ -23,14 +26,41 @@ namespace Assignment1.ListManager
             return true;
         }
 
+
         public bool BinaryDeSerialize(string fileName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (Stream stream = File.Open(fileName +".txt", FileMode.Open))
+                {
+                    BinaryFormatter binaryFormatter = new BinaryFormatter();
+                    m_list = (List<T>)binaryFormatter.Deserialize(stream);
+
+                    return true;
+                }
+            } catch (Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public bool BinarySerialize(string fileName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (Stream stream = File.Open(fileName + ".txt", FileMode.Create))
+                {
+                    BinaryFormatter binaryFormatter = new BinaryFormatter();
+                    binaryFormatter.Serialize(stream, m_list);
+
+                    return true;
+                } 
+            } catch(Exception e)
+            {
+                return false;
+            }
+            
         }
 
         public bool ChangeAt(T aType, int anIndex)
@@ -90,7 +120,18 @@ namespace Assignment1.ListManager
 
         public bool XMLSerialize(string fileName)
         {
-            throw new NotImplementedException();
+            try
+            {
+                XmlSerializer managerSerializer = new XmlSerializer(typeof(List<T>));
+                StreamWriter writer = new StreamWriter(fileName + ".xml", false);
+                managerSerializer.Serialize(writer, m_list);
+                writer.Close();
+                return true;
+            } catch (Exception e)
+            {
+                return false;
+            }
+           
         }
 
         public List<T> ToList()
