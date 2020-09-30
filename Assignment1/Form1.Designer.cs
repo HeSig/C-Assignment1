@@ -220,7 +220,6 @@ namespace Assignment1
             this.SearchBoxLegal.Name = "SearchBoxLegal";
             this.SearchBoxLegal.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxLegal.TabIndex = 27;
-            this.SearchBoxLegal.SelectedIndex = 0;
             this.SearchBoxLegal.SelectedIndexChanged += new System.EventHandler(this.SearchBoxLegal_SelectedIndexChanged);
             // 
             // SearchBoxType
@@ -239,7 +238,6 @@ namespace Assignment1
             this.SearchBoxType.Name = "SearchBoxType";
             this.SearchBoxType.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxType.TabIndex = 26;
-            this.SearchBoxType.SelectedIndex = 0;
             this.SearchBoxType.SelectedIndexChanged += new System.EventHandler(this.SearchBoxType_SelectedIndexChanged);
             // 
             // SearchBoxCountry
@@ -445,7 +443,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -863,6 +860,7 @@ namespace Assignment1
             this.EditInfo.ReadOnly = true;
             this.EditInfo.Size = new System.Drawing.Size(143, 59);
             this.EditInfo.TabIndex = 22;
+            this.EditInfo.TextChanged += new System.EventHandler(this.EditInfo_TextChanged);
             // 
             // label11
             // 

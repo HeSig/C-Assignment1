@@ -431,5 +431,10 @@ namespace Assignment1
             SearchSqrftDisplay.Text = EstateSqrftSlider.Value.ToString();
             UpdateEstateList();
         }
+
+        private void EditInfo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

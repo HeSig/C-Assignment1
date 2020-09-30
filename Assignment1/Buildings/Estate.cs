@@ -10,24 +10,19 @@ using System.Xml.Serialization;
 namespace Assignment1
 {
     [Serializable]
-    [XmlRoot("Estate")]
     //Abstract class for all Estates. 
+    //private set in the properties is  outcommented as of now to be able to be serialized in ListManager.
     public class Estate : IEstate
     {
-        [XmlElement("Estate Id")]
         public int Id { get; /*private*/ set; }
 
-        [XmlElement("Address")]
         public Address Address { get; /*private*/ set; }
 
-        [XmlElement("Square feet")]
         public int Sqrft { get; /*private*/ set; }
 
-        [XmlElement("Rent")]
         public int Rent { get; /*private*/ set; }
 
         // Category. A value which can be used by other methods to distinguish between Residential and Commercial estates.
-        [DisplayName("Category")]
         public string Category { get; /*protected*/ set; }
 
         // Legal type. Residential replaces this with its own legal types.

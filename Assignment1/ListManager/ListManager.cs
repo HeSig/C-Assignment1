@@ -25,18 +25,12 @@ namespace Assignment1.ListManager
             return true;
         }
 
+
         public bool BinaryDeSerialize(string fileName)
         {
-
-            /*if (!File.Exists(fileName)) 
-            { 
-                String errorMessage = $"The file {fileName}  was not found. "; 
-                //create file
-                throw (new FileNotFoundException(errorMessage)); 
-            } */
             try
             {
-                using (Stream stream = File.Open(fileName, FileMode.Create))
+                using (Stream stream = File.Open(fileName +".txt", FileMode.Open))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     m_list = (List<T>)binaryFormatter.Deserialize(stream);
@@ -54,7 +48,7 @@ namespace Assignment1.ListManager
         {
             try
             {
-                using (Stream stream = File.Open(fileName, FileMode.Create))
+                using (Stream stream = File.Open(fileName + ".txt", FileMode.Create))
                 {
                     BinaryFormatter binaryFormatter = new BinaryFormatter();
                     binaryFormatter.Serialize(stream, m_list);
@@ -128,14 +122,12 @@ namespace Assignment1.ListManager
             try
             {
                 XmlSerializer managerSerializer = new XmlSerializer(typeof(List<T>));
-                //String path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-                StreamWriter writer = new StreamWriter(fileName, false);
+                StreamWriter writer = new StreamWriter(fileName + ".xml", false);
                 managerSerializer.Serialize(writer, m_list);
                 writer.Close();
                 return true;
             } catch (Exception e)
             {
-                throw e;
                 return false;
             }
            
