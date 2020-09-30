@@ -36,6 +36,7 @@ namespace Assignment1.ListManager
         new public bool Add(Estate aType)
         {
             base.Add(aType);
+
             cd.Add(aType);
             return true;
         }

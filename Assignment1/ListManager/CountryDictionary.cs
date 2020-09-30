@@ -19,6 +19,10 @@ namespace Assignment1.ListManager
 
         public List<Estate> Get(Countries country)
         {
+            if (Contains(country))
+            {
+                throw new KeyNotFoundException();
+            }
             return CDic[country];
         }
 
