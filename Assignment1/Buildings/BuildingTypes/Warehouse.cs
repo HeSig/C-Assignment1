@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Assignment1.Buildings.BuildingTypes
 {
     [Serializable]
-    class Warehouse : Commercial
+    public class Warehouse : Commercial
     {
         public Warehouse()
         {

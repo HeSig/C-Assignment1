@@ -8,7 +8,7 @@ namespace Assignment1
 {
     //Commercial subclass of Estate.
     [Serializable]
-    class Commercial : Estate
+    public class Commercial : Estate
     {
         public Commercial()
         {

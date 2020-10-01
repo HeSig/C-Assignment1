@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Assignment1.Buildings;
 
 namespace Assignment1.ListManager
@@ -19,7 +20,7 @@ namespace Assignment1.ListManager
 
         public List<Estate> Get(Countries country)
         {
-            if (Contains(country))
+            if (!Contains(country))
             {
                 throw new KeyNotFoundException();
             }
@@ -48,6 +49,7 @@ namespace Assignment1.ListManager
 
         public void Remove(Estate estate)
         {
+            //Console.WriteLine(CDic.ContainsKey(estate.Address.country));
             CDic[estate.Address.country].Remove(estate);
         }
 

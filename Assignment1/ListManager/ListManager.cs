@@ -29,7 +29,6 @@ namespace Assignment1.ListManager
 
         public bool BinaryDeSerialize(string fileName)
         {
-            Console.WriteLine(fileName);
             try
             {
                 using (Stream stream = File.Open(fileName, FileMode.Open))
@@ -44,7 +43,24 @@ namespace Assignment1.ListManager
                 Console.WriteLine(e);
                 return false;
             }
-            
+        }
+
+        public bool xmlDeSerialize(string fileName)
+        {
+            try
+            {
+                using (Stream stream = File.Open(fileName, FileMode.Open))
+                {
+                    XmlSerializer xmls = new XmlSerializer(typeof(List<T>));
+                    m_list = (List<T>)xmls.Deserialize(stream);
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
 
         public bool BinarySerialize(string fileName)
@@ -126,7 +142,7 @@ namespace Assignment1.ListManager
             try
             {
                 XmlSerializer managerSerializer = new XmlSerializer(typeof(List<T>));
-                StreamWriter writer = new StreamWriter(fileName + ".xml", false);
+                StreamWriter writer = new StreamWriter(fileName, false);
                 managerSerializer.Serialize(writer, m_list);
                 writer.Close();
                 return true;

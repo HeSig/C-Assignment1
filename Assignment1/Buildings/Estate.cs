@@ -1,4 +1,5 @@
 ﻿using Assignment1.Buildings;
+using Assignment1.Buildings.BuildingTypes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,12 @@ using System.Xml.Serialization;
 
 namespace Assignment1
 {
+    [XmlInclude(typeof(Apartment))]
+    [XmlInclude(typeof(Rowhouse))]
+    [XmlInclude(typeof(Shop))]
+    [XmlInclude(typeof(Warehouse))]
+    [XmlInclude(typeof(Villa))]
+    [XmlInclude(typeof(House))]
     [Serializable]
     //Abstract class for all Estates. 
     //private set in the properties is  outcommented as of now to be able to be serialized in ListManager.

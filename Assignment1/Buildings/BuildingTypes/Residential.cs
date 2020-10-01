@@ -8,7 +8,7 @@ namespace Assignment1
 {
     //Residential subclass of Estate
     [Serializable]
-    abstract class Residential : Estate
+    public abstract class Residential : Estate
     {
         public Residential()
         {

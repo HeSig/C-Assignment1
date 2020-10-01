@@ -43,14 +43,14 @@ namespace Assignment1
             newFile = true;
 
             //Create Estates and add them to the list.
-            Estates.Add(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
+            /*Estates.Add(new House(1, 23, 2000, new Address("Storgatan 2", 32736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
             Estates.Add(new Villa(2, 500, 5000, new Address("Sopgatan 11", 42736, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
             Estates.Add(new Rowhouse(3, 200, 4500, new Address("Kungsvägen 12", 31536, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Tenement, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\House.jpg"));
             Estates.Add(new Shop(4, 150, 12000, new Address("Storgatan 3", 22336, "Lund", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
             Estates.Add(new Warehouse(5, 1000, 7000, new Address("Kung Oskars Bro 4", 22336, "Luleå", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
             Estates.Add(new Shop(6, 100, 5000, new Address("Storgatan 3", 12412, "Göteborg", Buildings.Countries.Sverige), Estate.Legal.Ownership, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
             Estates.Add(new Warehouse(7, 250, 2000, new Address("Möllan 4", 53135, "Malmö", Buildings.Countries.Sverige), Estate.Legal.Rental, Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\Images\\Storefront.jpg"));
-
+            */
             UpdateEstateList();
         }
 
@@ -118,9 +118,6 @@ namespace Assignment1
 
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
-
-
-            Console.WriteLine("RES COUNT: " + res.Count);
             //This for-loop goes through every Estate in the list of Estates and checks wether the filter-attributes correspond to the attributes of the estate.
             //If they do they are added to the list, if not they are hidden from view.
             for (int i = 0; i < res.Count; i++)
@@ -458,19 +455,21 @@ namespace Assignment1
 
         private void mnuFileSaveAs_Click(object sender, EventArgs e)
         {
-            //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles";
-            var ofd = new FolderBrowserDialog();
-            ofd.SelectedPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
+            if(Estates.Count == 0)
+            {
+                MessageBox.Show("Can't save an empty project");
+                return;
+            }
+            var ofd = new SaveFileDialog();
+            ofd.Filter = "TXT files (*.txt)|*.txt";
+            ofd.RestoreDirectory = true;
+            ofd.InitialDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
 
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Estates.BinarySerialize(ofd.SelectedPath + "\\DoingATest.txt");
-                currentSaveFilePath = ofd.SelectedPath + "\\DoingATest.txt";
-                //UpdateImage(ofd.FileName);
+                Estates.BinarySerialize(ofd.FileName);
+                currentSaveFilePath = ofd.FileName;
             }
-
-            //String path = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\DoingTest";
-            //Estates.BinarySerialize(path);
             newFile = false;
         }
 
@@ -493,7 +492,7 @@ namespace Assignment1
 
         private void mnuFileOpen_Click(object sender, EventArgs e)
         {
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 InitialDirectory = projectDirectory,
@@ -504,14 +503,17 @@ namespace Assignment1
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 Estates.BinaryDeSerialize(ofd.FileName);
-                //Console.WriteLine(Estates.GetAt(0).Id);
+                foreach(Estate estate in Estates.ToList())
+                {
+                    Estates.GetCountryDictionary().Add(estate);
+                }
                 UpdateEstateList();
             }
         }
 
         private void mnuXMLImport_Click(object sender, EventArgs e)
         {
-            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName;
+            string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
             OpenFileDialog ofd = new OpenFileDialog()
             {
                 InitialDirectory = projectDirectory,
@@ -521,21 +523,30 @@ namespace Assignment1
             };
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                //Estates.xmlDeSerialize(ofd.FileName);
+                Estates.xmlDeSerialize(ofd.FileName);
+                foreach (Estate estate in Estates.ToList())
+                {
+                    Estates.GetCountryDictionary().Add(estate);
+                }
                 UpdateEstateList();
             }
         }
 
         private void mnuXMLExport_Click(object sender, EventArgs e)
         {
-            //string projectDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles";
-            var ofd = new FolderBrowserDialog();
-            ofd.SelectedPath = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
+            if (Estates.Count == 0)
+            {
+                MessageBox.Show("Can't save an empty project");
+                return;
+            }
 
+            var ofd = new SaveFileDialog();
+            ofd.Filter = "XML files (*.xml)|*.xml";
+            ofd.RestoreDirectory = true;
+            ofd.InitialDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
             if (ofd.ShowDialog() == DialogResult.OK)
             {
-                Estates.XMLSerialize(ofd.SelectedPath + "\\DoingATest");
-                Console.WriteLine("Done");
+                Estates.XMLSerialize(ofd.FileName);
             }
         }
     }

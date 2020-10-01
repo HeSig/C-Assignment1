@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 
 namespace Assignment1
 {
@@ -1083,6 +1084,7 @@ namespace Assignment1
             this.mnuNew.Name = "mnuNew";
             this.mnuNew.Size = new System.Drawing.Size(180, 22);
             this.mnuNew.Text = "New";
+            this.mnuNew.ShortcutKeys = Keys.Control | Keys.N;
             this.mnuNew.Click += new System.EventHandler(this.mnuNew_Click);
             // 
             // mnuFileOpen
@@ -1090,6 +1092,7 @@ namespace Assignment1
             this.mnuFileOpen.Name = "mnuFileOpen";
             this.mnuFileOpen.Size = new System.Drawing.Size(180, 22);
             this.mnuFileOpen.Text = "Open ...";
+            this.mnuFileOpen.ShortcutKeys = Keys.Control | Keys.O;
             this.mnuFileOpen.Click += new System.EventHandler(this.mnuFileOpen_Click);
             // 
             // mnuFileSave
@@ -1097,6 +1100,7 @@ namespace Assignment1
             this.mnuFileSave.Name = "mnuFileSave";
             this.mnuFileSave.Size = new System.Drawing.Size(180, 22);
             this.mnuFileSave.Text = "Save";
+            this.mnuFileSave.ShortcutKeys = Keys.Control | Keys.S;
             this.mnuFileSave.Click += new System.EventHandler(this.mnuFileSave_Click);
             // 
             // mnuFileSaveAs
@@ -1144,6 +1148,7 @@ namespace Assignment1
             this.mnuExit.Name = "mnuExit";
             this.mnuExit.Size = new System.Drawing.Size(180, 22);
             this.mnuExit.Text = "Exit";
+            this.mnuExit.ShortcutKeys = Keys.Control | Keys.X;
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // Form1
