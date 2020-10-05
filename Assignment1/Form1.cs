@@ -15,7 +15,7 @@ using Assignment1.Buildings;
 
 namespace Assignment1
 {
-    //Authors: Henrik and My
+    //Authors: Henrik Sigeman and My Adolfsson
     public partial class Form1 : Form
     {
         //List of Estate objects, can be of any type.
