@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Assignment1;
-using Assignment1.Buildings.BuildingTypes;
 using System.IO;
-using Assignment1.ListManager;
-using Assignment1.Buildings;
+using UtilitiesLib;
+using HomeForSaleBLL;
+using HomeForSaleBLL.BuildingTypes;
 
 namespace Assignment1
 {
@@ -100,7 +95,7 @@ namespace Assignment1
             {
                 country = this.SearchBoxCountry.Text;
                 //Console.WriteLine(country);
-                Countries c = (Countries) Enum.Parse(typeof(Countries), country);
+                Countries c = EstateUtils.parseCountry(country);
                 if (Estates.GetCountryDictionary().Contains(c)) res = Estates.GetCountryDictionary().Get(c);
 
             }
@@ -167,62 +162,62 @@ namespace Assignment1
                 try
                 {
                     //Checks wether the ID is unique, or the currently selected estate has the same ID. If not it throws an InvalidIDException.
-                    id = Forms.VariablesCheck.AddNewId(this.EstateId.Text, Forms.ListManip.GetEstateFromList(EstateList.SelectedIndex, EstateListItems.ToArray(), Estates), Estates);
+                    id = VariablesCheck.AddNewId(this.EstateId.Text, ListManip.GetEstateFromList(EstateList.SelectedIndex, EstateListItems.ToArray(), Estates), Estates);
                 }
-                catch (Forms.DuplicateIDException)
+                catch (DuplicateIDException)
                 {
                     //Informs the user of the issue.
                     this.EditInfo.Text = "ID cannot be a duplicate. Changes not saved.";
-                    throw new Forms.DuplicateIDException();
+                    throw new DuplicateIDException();
                 }
-                catch (Forms.StringNotIntException)
+                catch (StringNotIntException)
                 {
                     //Informs the user that an ID must only contain numbers.
                     this.EditInfo.Text = "ID must only contain numbers 0 to 9";
-                    throw new Forms.StringNotIntException();
+                    throw new StringNotIntException();
                 }
 
                 try
                 {
                     //Checks wether the ZIP contains only numbers.
-                    zip = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateZip.Text);
+                    zip = VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateZip.Text);
                 }
-                catch (Forms.StringNotIntException)
+                catch (StringNotIntException)
                 {
                     //Informs the user that a ZIP must only contain numbers.
                     this.EditInfo.Text = "Zip must only contain numbers 0 to 9";
-                    throw new Forms.StringNotIntException();
+                    throw new StringNotIntException();
                 }
 
                 try
                 {
                     //Checks wether the rent contains only numbers.
-                    rent = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateRent.Text);
+                    rent = VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateRent.Text);
                 }
-                catch (Forms.StringNotIntException)
+                catch (StringNotIntException)
                 {
                     //Informs the user that rent must only contain numbers.
                     this.EditInfo.Text = "Rent must only contain numbers 0 to 9";
-                    throw new Forms.StringNotIntException();
+                    throw new StringNotIntException();
                 }
                 try
                 {
                     //Checks wether the Square Feet attribute only contains numbers.
-                    sqrft = Forms.VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateSqrft.Text);
+                    sqrft = VariablesCheck.CheckIfNumberFieldHasLetters(this.EstateSqrft.Text);
                 }
-                catch (Forms.StringNotIntException)
+                catch (StringNotIntException)
                 {
                     //INforms the user that Square Feet must only contain numbers.
                     this.EditInfo.Text = "Square Feet must only contain numbers 0 to 9";
-                    throw new Forms.StringNotIntException();
+                    throw new StringNotIntException();
                 }
                 try
                 {
                     //Attempts to create a new Address attribute. If Street address contains any special characters the constructor throws a SpecialCharException.
                     //If the City contains anything other than letters the constructor throws a SpecialCharException.
-                    a = new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text));
+                    a = new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text));
                 }
-                catch (Buildings.SpecialCharException)
+                catch (SpecialCharException)
                 {
                     //Informs the user that Street can only contain numbers and letters, and City can only contain letters.
                     this.EditInfo.Text = "Street address must only contain letters A-Ö and numbers 0 to 9. And City can only contain letters A-Ö.";
@@ -245,27 +240,27 @@ namespace Assignment1
                 //Depending on the type of estate the program creates different estates.
                 if (this.EstateTypeMenu.Text == "House")
                 {
-                    res = new House(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new House(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
                 else if (EstateTypeMenu.Text == "Apartment")
                 {
-                    res = new Apartment(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new Apartment(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
                 else if (EstateTypeMenu.Text == "Villa")
                 {
-                    res = new Villa(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new Villa(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
                 else if (EstateTypeMenu.Text == "Rowhouse")
                 {
-                    res = new Rowhouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new Rowhouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
                 else if (EstateTypeMenu.Text == "Shop")
                 {
-                    res = new Shop(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new Shop(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
                 else if (EstateTypeMenu.Text == "Warehouse")
                 {
-                    res = new Warehouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, (Buildings.Countries)Enum.Parse(typeof(Buildings.Countries), this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    res = new Warehouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
                 }
 
                 //If the boolean createnew is set to false then the new estate replaces the selected item in the list.
@@ -303,8 +298,8 @@ namespace Assignment1
             try
             {
                 ListBox listbox = (ListBox)sender;
-                Estate building = Forms.ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates);
-                selectedEstate = Forms.ListManip.GetEstateSearchListPositionByEstateID(building.Id, Estates);
+                Estate building = ListManip.GetEstateFromList(listbox.SelectedIndex, EstateListItems.ToArray(), Estates);
+                selectedEstate = ListManip.GetEstateSearchListPositionByEstateID(building.Id, Estates);
                 this.EstateId.Text = building.Id.ToString();
                 this.EstateStreet.Text = building.Address.Street.ToString();
                 this.EstateZip.Text = building.Address.Zip.ToString();
@@ -395,7 +390,7 @@ namespace Assignment1
         //Delete the selected estate
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            Estates.DeleteEstate(Forms.ListManip.GetEstateByID(Forms.ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)), Estates));
+            Estates.DeleteEstate(ListManip.GetEstateByID(ListManip.GetEstateIdFromEstateSearchList(EstateListItems.ElementAt(selectedEstate)), Estates));
             selectedEstate = -1;
             UpdateEstateList();
             EnableInfoBoxes(false);
@@ -453,24 +448,9 @@ namespace Assignment1
             UpdateEstateList();
         }
 
-        private void mnuFileSaveAs_Click(object sender, EventArgs e)
+        private void mnuExit_Click(object sender, EventArgs e)
         {
-            if(Estates.Count == 0)
-            {
-                MessageBox.Show("Can't save an empty project");
-                return;
-            }
-            var ofd = new SaveFileDialog();
-            ofd.Filter = "TXT files (*.txt)|*.txt";
-            ofd.RestoreDirectory = true;
-            ofd.InitialDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
-
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                Estates.BinarySerialize(ofd.FileName);
-                currentSaveFilePath = ofd.FileName;
-            }
-            newFile = false;
+            Application.Exit();
         }
 
         private void mnuFileSave_Click(object sender, EventArgs e)
@@ -485,10 +465,7 @@ namespace Assignment1
             }
         }
 
-        private void mnuExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+
 
         private void mnuFileOpen_Click(object sender, EventArgs e)
         {
@@ -509,6 +486,30 @@ namespace Assignment1
                 }
                 UpdateEstateList();
             }
+        }
+
+        private void mnuFileSaveAs_Click(object sender, EventArgs e)
+        {
+            if (Estates.Count == 0)
+            {
+                MessageBox.Show("Can't save an empty project");
+                return;
+            }
+            else
+            {
+                var ofd = new SaveFileDialog();
+                ofd.Filter = "TXT files (*.txt)|*.txt";
+                ofd.RestoreDirectory = true;
+                ofd.InitialDirectory = Directory.GetParent(Environment.CurrentDirectory).Parent.FullName + "\\DataFiles\\";
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    Estates.BinarySerialize(ofd.FileName);
+                    currentSaveFilePath = ofd.FileName;
+                }
+            }
+
+            newFile = false;
         }
 
         private void mnuXMLImport_Click(object sender, EventArgs e)
