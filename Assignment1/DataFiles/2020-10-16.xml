@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEstate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Estate xsi:type="Apartment">
+    <Id>1</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storgatan 5</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <type>Apartment</type>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\House.jpg</Image>
+    <floor>2</floor>
+  </Estate>
+  <Estate xsi:type="Apartment">
+    <Id>2</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storgatan 5</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <type>Apartment</type>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\House.jpg</Image>
+    <floor>3</floor>
+  </Estate>
+  <Estate xsi:type="Warehouse">
+    <Id>3</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Smågatan 7</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <type>Warehouse</type>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\Storefront.jpg</Image>
+    <HasDedicatedGuard>true</HasDedicatedGuard>
+  </Estate>
+</ArrayOfEstate>

@@ -50,7 +50,7 @@
   <ItemGroup>
     <Reference Include="HomeForSaleBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\HomeForSaleBLL.dll</HintPath>
+      <HintPath>..\..\HomeForSaleBLL\HomeForSaleBLL\bin\Debug\netstandard2.0\HomeForSaleBLL.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

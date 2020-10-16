@@ -54,13 +54,14 @@ namespace Assignment1
         {
             selectedEstate = -1;
             createNew = false;
-            EstateInfoBoxes = new TextBox[6];
+            EstateInfoBoxes = new TextBox[7];
             EstateInfoBoxes[0] = this.EstateId;
             EstateInfoBoxes[1] = this.EstateStreet;
             EstateInfoBoxes[2] = this.EstateZip;
             EstateInfoBoxes[3] = this.EstateCity;
             EstateInfoBoxes[4] = this.EstateRent;
             EstateInfoBoxes[5] = this.EstateSqrft;
+            EstateInfoBoxes[6] = this.UniqueEstateValue;
         }
 
         //Enable/disable writing in info boxes when an estate has been selected/edited.
@@ -91,21 +92,21 @@ namespace Assignment1
             }
             String city = this.SearchBarCity.Text;
             String country = "";
-            if (this.SearchBoxCountry.SelectedIndex != 0)
+            if (this.SearchBoxCountry.SelectedIndex > 0)
             {
                 country = this.SearchBoxCountry.Text;
-                //Console.WriteLine(country);
+                //Console.WriteLine(this.SearchBoxCountry.SelectedIndex);
                 Countries c = EstateUtils.parseCountry(country);
                 if (Estates.GetCountryDictionary().Contains(c)) res = Estates.GetCountryDictionary().Get(c);
 
             }
             String legal = "";
-            if (this.SearchBoxLegal.SelectedIndex != 0)
+            if (this.SearchBoxLegal.SelectedIndex > 0)
             {
                 legal = this.SearchBoxLegal.Text;
             }
             String type = "";
-            if (this.SearchBoxType.SelectedIndex != 0)
+            if (this.SearchBoxType.SelectedIndex > 0)
             {
                 type = this.SearchBoxType.Text;
             }
@@ -118,7 +119,7 @@ namespace Assignment1
             for (int i = 0; i < res.Count; i++)
             {
                 Estate e = res[i];
-                if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.GetEstateType().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
+                if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.type.ToString().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
                 {
                     //Create a string representation of an Estate as such: ID : Street, City, Country.
                     EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
@@ -240,27 +241,33 @@ namespace Assignment1
                 //Depending on the type of estate the program creates different estates.
                 if (this.EstateTypeMenu.Text == "House")
                 {
-                    res = new House(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
+                    res = new House(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
                 else if (EstateTypeMenu.Text == "Apartment")
                 {
-                    res = new Apartment(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
+                    res = new Apartment(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
                 else if (EstateTypeMenu.Text == "Villa")
                 {
-                    res = new Villa(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
+                    res = new Villa(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
                 else if (EstateTypeMenu.Text == "Rowhouse")
                 {
-                    res = new Rowhouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
+                    res = new Rowhouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
                 else if (EstateTypeMenu.Text == "Shop")
                 {
-                    res = new Shop(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
+                    res = new Shop(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
                 else if (EstateTypeMenu.Text == "Warehouse")
                 {
-                    res = new Warehouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation);
+                    bool val = VariablesCheck.checkTrueFalse(UniqueEstateValue.Text);
+                    res = new Warehouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
 
                 //If the boolean createnew is set to false then the new estate replaces the selected item in the list.
@@ -306,12 +313,40 @@ namespace Assignment1
                 this.EstateCity.Text = building.Address.City;
 
                 this.EstateLegalMenu.SelectedItem = building.GetLegalType();
-                this.EstateTypeMenu.SelectedItem = building.GetEstateType();
+                this.EstateTypeMenu.SelectedItem = building.type.ToString();
 
                 UpdateImage(building.Image);
                 this.EstateRent.Text = building.Rent.ToString();
                 this.EstateSqrft.Text = building.Sqrft.ToString();
                 this.EstateCountryMenu.SelectedItem = building.Address.country.ToString();
+                changeUniqueValueTextBox();
+                switch (building.type) 
+                {
+                    case Estate.EstateType.Apartment:
+                        Apartment apt = (Apartment)building;
+                        UniqueEstateValue.Text = apt.floor.ToString();
+                        break;
+                    case Estate.EstateType.House:
+                        House hs = (House)building;
+                        UniqueEstateValue.Text = hs.bathrooms.ToString();
+                        break;
+                    case Estate.EstateType.Rowhouse:
+                        Rowhouse rh = (Rowhouse)building;
+                        UniqueEstateValue.Text = rh.balconies.ToString();
+                        break;
+                    case Estate.EstateType.Shop:
+                        Shop sp = (Shop)building;
+                        UniqueEstateValue.Text = sp.maxNumberOfShoppers.ToString();
+                        break;
+                    case Estate.EstateType.Villa:
+                        Villa vl = (Villa)building;
+                        UniqueEstateValue.Text = vl.sqrftGarden.ToString();
+                        break;
+                    case Estate.EstateType.Warehouse:
+                        Warehouse wh = (Warehouse)building;
+                        UniqueEstateValue.Text = wh.HasDedicatedGuard.ToString();
+                        break;
+                }
             }
             catch (NullReferenceException exc)
             {
@@ -347,6 +382,7 @@ namespace Assignment1
                 this.DisplayImage.Image = null;
                 this.DisplayImage.ImageLocation = null;
                 this.EstateCountryMenu.SelectedItem = "Sverige";
+                this.UniqueEstateValue.Text = "";
             }
             catch (NullReferenceException exc)
             {
@@ -549,6 +585,40 @@ namespace Assignment1
             {
                 Estates.XMLSerialize(ofd.FileName);
             }
+        }
+
+        private void changeUniqueValueTextBox()
+        {
+            switch (EstateTypeMenu.SelectedItem)
+            {
+                case "Apartment":
+                    UniqueEstateValueText.Text = "Floor";
+                    break;
+                case "House":
+                    UniqueEstateValueText.Text = "Number of Bathrooms";
+                    break;
+                case "Rowhouse":
+                    UniqueEstateValueText.Text = "Number of balconies";
+                    break;
+                case "Shop":
+                    UniqueEstateValueText.Text = "Maximum number of shoppers";
+                    break;
+                case "Villa":
+                    UniqueEstateValueText.Text = "Square feet of garden";
+                    break;
+                case "Warehouse":
+                    UniqueEstateValueText.Text = "Warehouse has a security guard (true/false)";
+                    break;
+                default:
+                    UniqueEstateValueText.Text = "Unique estate value text";
+                    break;
+            }
+            UniqueEstateValue.Text = "";
+        }
+
+        private void EstateTypeMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            changeUniqueValueTextBox();
         }
     }
 }

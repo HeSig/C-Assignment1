@@ -94,6 +94,8 @@ namespace Assignment1
             this.mnuXMLExport = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.UniqueEstateValue = new System.Windows.Forms.TextBox();
+            this.UniqueEstateValueText = new System.Windows.Forms.Label();
             this.tabPage1.SuspendLayout();
             this.SearchGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.EstateSqrftSlider)).BeginInit();
@@ -457,7 +459,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -581,6 +582,8 @@ namespace Assignment1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.UniqueEstateValueText);
+            this.groupBox1.Controls.Add(this.UniqueEstateValue);
             this.groupBox1.Controls.Add(this.DeleteButton);
             this.groupBox1.Controls.Add(this.ImageUpload);
             this.groupBox1.Controls.Add(this.EstateLegalMenu);
@@ -652,16 +655,17 @@ namespace Assignment1
             this.EstateTypeMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EstateTypeMenu.FormattingEnabled = true;
             this.EstateTypeMenu.Items.AddRange(new object[] {
-            "House",
-            "Villa",
             "Apartment",
+            "House",
             "Rowhouse",
             "Shop",
+            "Villa",
             "Warehouse"});
             this.EstateTypeMenu.Location = new System.Drawing.Point(36, 236);
             this.EstateTypeMenu.Name = "EstateTypeMenu";
             this.EstateTypeMenu.Size = new System.Drawing.Size(159, 21);
             this.EstateTypeMenu.TabIndex = 23;
+            this.EstateTypeMenu.SelectedIndexChanged += new System.EventHandler(this.EstateTypeMenu_SelectedIndexChanged);
             // 
             // EstateCountryMenu
             // 
@@ -1082,38 +1086,38 @@ namespace Assignment1
             // mnuNew
             // 
             this.mnuNew.Name = "mnuNew";
-            this.mnuNew.Size = new System.Drawing.Size(180, 22);
+            this.mnuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuNew.Size = new System.Drawing.Size(158, 22);
             this.mnuNew.Text = "New";
-            this.mnuNew.ShortcutKeys = Keys.Control | Keys.N;
             this.mnuNew.Click += new System.EventHandler(this.mnuNew_Click);
             // 
             // mnuFileOpen
             // 
             this.mnuFileOpen.Name = "mnuFileOpen";
-            this.mnuFileOpen.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.mnuFileOpen.Size = new System.Drawing.Size(158, 22);
             this.mnuFileOpen.Text = "Open ...";
-            this.mnuFileOpen.ShortcutKeys = Keys.Control | Keys.O;
             this.mnuFileOpen.Click += new System.EventHandler(this.mnuFileOpen_Click);
             // 
             // mnuFileSave
             // 
             this.mnuFileSave.Name = "mnuFileSave";
-            this.mnuFileSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.mnuFileSave.Size = new System.Drawing.Size(158, 22);
             this.mnuFileSave.Text = "Save";
-            this.mnuFileSave.ShortcutKeys = Keys.Control | Keys.S;
             this.mnuFileSave.Click += new System.EventHandler(this.mnuFileSave_Click);
             // 
             // mnuFileSaveAs
             // 
             this.mnuFileSaveAs.Name = "mnuFileSaveAs";
-            this.mnuFileSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSaveAs.Size = new System.Drawing.Size(158, 22);
             this.mnuFileSaveAs.Text = "Save as ...";
             this.mnuFileSaveAs.Click += new System.EventHandler(this.mnuFileSaveAs_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // mnuXML
             // 
@@ -1121,7 +1125,7 @@ namespace Assignment1
             this.mnuXMLImport,
             this.mnuXMLExport});
             this.mnuXML.Name = "mnuXML";
-            this.mnuXML.Size = new System.Drawing.Size(180, 22);
+            this.mnuXML.Size = new System.Drawing.Size(158, 22);
             this.mnuXML.Text = "XML";
             // 
             // mnuXMLImport
@@ -1141,15 +1145,33 @@ namespace Assignment1
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(155, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.mnuExit.Size = new System.Drawing.Size(158, 22);
             this.mnuExit.Text = "Exit";
-            this.mnuExit.ShortcutKeys = Keys.Control | Keys.X;
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
+            // 
+            // UniqueEstateValue
+            // 
+            this.UniqueEstateValue.Location = new System.Drawing.Point(217, 236);
+            this.UniqueEstateValue.Name = "UniqueEstateValue";
+            this.UniqueEstateValue.ReadOnly = true;
+            this.UniqueEstateValue.Size = new System.Drawing.Size(159, 20);
+            this.UniqueEstateValue.TabIndex = 27;
+            this.UniqueEstateValue.Tag = "UniqueEstateValue";
+            // 
+            // UniqueEstateValueText
+            // 
+            this.UniqueEstateValueText.AutoSize = true;
+            this.UniqueEstateValueText.Location = new System.Drawing.Point(201, 220);
+            this.UniqueEstateValueText.Name = "UniqueEstateValueText";
+            this.UniqueEstateValueText.Size = new System.Drawing.Size(104, 13);
+            this.UniqueEstateValueText.TabIndex = 28;
+            this.UniqueEstateValueText.Text = "Unique Estate Value";
             // 
             // Form1
             // 
@@ -1249,6 +1271,8 @@ namespace Assignment1
         private System.Windows.Forms.ToolStripMenuItem mnuXMLExport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
+        private Label UniqueEstateValueText;
+        private TextBox UniqueEstateValue;
     }
 }
 
