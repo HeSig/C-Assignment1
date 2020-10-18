@@ -48,6 +48,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HomeForSaleBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLFiles\HomeForSaleBLL.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -60,35 +64,18 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UtilitiesLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLLFiles\UtilitiesLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buildings\BuildingTypes\Warehouse.cs" />
-    <Compile Include="Buildings\BuildingTypes\Shop.cs" />
-    <Compile Include="Buildings\BuildingTypes\Rowhouse.cs" />
-    <Compile Include="Buildings\BuildingTypes\Apartment.cs" />
-    <Compile Include="Buildings\BuildingTypes\Villa.cs" />
-    <Compile Include="Buildings\BuildingTypes\House.cs" />
-    <Compile Include="Buildings\SpecialCharException.cs" />
-    <Compile Include="Buildings\Countries.cs" />
-    <Compile Include="Buildings\Estate.cs" />
-    <Compile Include="Buildings\Address.cs" />
-    <Compile Include="Buildings\BuildingTypes\Residential.cs" />
-    <Compile Include="Buildings\BuildingTypes\Commercial.cs" />
-    <Compile Include="Buildings\IEstate.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\DuplicateIDException.cs" />
-    <Compile Include="Forms\ListManip.cs" />
-    <Compile Include="Forms\StringNotIntException.cs" />
-    <Compile Include="Forms\VariablesCheck.cs" />
-    <Compile Include="ListManager\CountryDictionary.cs" />
-    <Compile Include="ListManager\EstateManager.cs" />
-    <Compile Include="ListManager\IListManager.cs" />
-    <Compile Include="ListManager\ListManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

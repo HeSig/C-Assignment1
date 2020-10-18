@@ -57,6 +57,8 @@ namespace Assignment1
             this.EstateRentSlider = new System.Windows.Forms.TrackBar();
             this.NewResidenceButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.UniqueEstateValueText = new System.Windows.Forms.Label();
+            this.UniqueEstateValue = new System.Windows.Forms.TextBox();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.ImageUpload = new System.Windows.Forms.Button();
             this.EstateLegalMenu = new System.Windows.Forms.ComboBox();
@@ -106,15 +108,14 @@ namespace Assignment1
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.NumberOfHiddenItems);
             this.tabPage1.Controls.Add(this.SearchGroupBox);
-            this.tabPage1.Controls.Add(this.NewResidenceButton);
-            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.EstateList);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 524);
+            this.tabPage1.Size = new System.Drawing.Size(774, 499);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "House List";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -122,7 +123,7 @@ namespace Assignment1
             // NumberOfHiddenItems
             // 
             this.NumberOfHiddenItems.AutoSize = true;
-            this.NumberOfHiddenItems.Location = new System.Drawing.Point(3, 209);
+            this.NumberOfHiddenItems.Location = new System.Drawing.Point(420, 212);
             this.NumberOfHiddenItems.Name = "NumberOfHiddenItems";
             this.NumberOfHiddenItems.Size = new System.Drawing.Size(75, 13);
             this.NumberOfHiddenItems.TabIndex = 32;
@@ -151,7 +152,7 @@ namespace Assignment1
             this.SearchGroupBox.Controls.Add(this.label3);
             this.SearchGroupBox.Controls.Add(this.EstateSqrftSlider);
             this.SearchGroupBox.Controls.Add(this.EstateRentSlider);
-            this.SearchGroupBox.Location = new System.Drawing.Point(3, 3);
+            this.SearchGroupBox.Location = new System.Drawing.Point(420, 6);
             this.SearchGroupBox.Name = "SearchGroupBox";
             this.SearchGroupBox.Size = new System.Drawing.Size(348, 195);
             this.SearchGroupBox.TabIndex = 27;
@@ -457,7 +458,6 @@ namespace Assignment1
             this.SearchBoxCountry.Name = "SearchBoxCountry";
             this.SearchBoxCountry.Size = new System.Drawing.Size(159, 21);
             this.SearchBoxCountry.TabIndex = 25;
-            this.SearchBoxCountry.SelectedIndex = 0;
             this.SearchBoxCountry.SelectedIndexChanged += new System.EventHandler(this.SearchBoxCountry_SelectedIndexChanged);
             // 
             // SearchBarCity
@@ -571,7 +571,7 @@ namespace Assignment1
             // NewResidenceButton
             // 
             this.NewResidenceButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.NewResidenceButton.Location = new System.Drawing.Point(6, 494);
+            this.NewResidenceButton.Location = new System.Drawing.Point(6, 22);
             this.NewResidenceButton.Name = "NewResidenceButton";
             this.NewResidenceButton.Size = new System.Drawing.Size(143, 23);
             this.NewResidenceButton.TabIndex = 25;
@@ -581,6 +581,9 @@ namespace Assignment1
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.NewResidenceButton);
+            this.groupBox1.Controls.Add(this.UniqueEstateValueText);
+            this.groupBox1.Controls.Add(this.UniqueEstateValue);
             this.groupBox1.Controls.Add(this.DeleteButton);
             this.groupBox1.Controls.Add(this.ImageUpload);
             this.groupBox1.Controls.Add(this.EstateLegalMenu);
@@ -604,19 +607,37 @@ namespace Assignment1
             this.groupBox1.Controls.Add(this.EstateStreet);
             this.groupBox1.Controls.Add(this.EstateId);
             this.groupBox1.Controls.Add(this.DisplayImage);
-            this.groupBox1.Location = new System.Drawing.Point(354, 3);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(414, 486);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "BuildingDisplay";
             // 
+            // UniqueEstateValueText
+            // 
+            this.UniqueEstateValueText.AutoSize = true;
+            this.UniqueEstateValueText.Location = new System.Drawing.Point(190, 242);
+            this.UniqueEstateValueText.Name = "UniqueEstateValueText";
+            this.UniqueEstateValueText.Size = new System.Drawing.Size(104, 13);
+            this.UniqueEstateValueText.TabIndex = 28;
+            this.UniqueEstateValueText.Text = "Unique Estate Value";
+            // 
+            // UniqueEstateValue
+            // 
+            this.UniqueEstateValue.Location = new System.Drawing.Point(206, 258);
+            this.UniqueEstateValue.Name = "UniqueEstateValue";
+            this.UniqueEstateValue.ReadOnly = true;
+            this.UniqueEstateValue.Size = new System.Drawing.Size(159, 20);
+            this.UniqueEstateValue.TabIndex = 27;
+            this.UniqueEstateValue.Tag = "UniqueEstateValue";
+            // 
             // DeleteButton
             // 
             this.DeleteButton.BackColor = System.Drawing.Color.Transparent;
             this.DeleteButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeleteButton.ForeColor = System.Drawing.Color.Red;
-            this.DeleteButton.Location = new System.Drawing.Point(153, 457);
+            this.DeleteButton.Location = new System.Drawing.Point(149, 419);
             this.DeleteButton.Name = "DeleteButton";
             this.DeleteButton.Size = new System.Drawing.Size(98, 23);
             this.DeleteButton.TabIndex = 26;
@@ -626,7 +647,7 @@ namespace Assignment1
             // 
             // ImageUpload
             // 
-            this.ImageUpload.Location = new System.Drawing.Point(291, 187);
+            this.ImageUpload.Location = new System.Drawing.Point(280, 209);
             this.ImageUpload.Name = "ImageUpload";
             this.ImageUpload.Size = new System.Drawing.Size(98, 23);
             this.ImageUpload.TabIndex = 25;
@@ -642,7 +663,7 @@ namespace Assignment1
             "Ownership",
             "Rental",
             "Tenement"});
-            this.EstateLegalMenu.Location = new System.Drawing.Point(36, 275);
+            this.EstateLegalMenu.Location = new System.Drawing.Point(25, 297);
             this.EstateLegalMenu.Name = "EstateLegalMenu";
             this.EstateLegalMenu.Size = new System.Drawing.Size(159, 21);
             this.EstateLegalMenu.TabIndex = 24;
@@ -652,16 +673,17 @@ namespace Assignment1
             this.EstateTypeMenu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EstateTypeMenu.FormattingEnabled = true;
             this.EstateTypeMenu.Items.AddRange(new object[] {
-            "House",
-            "Villa",
             "Apartment",
+            "House",
             "Rowhouse",
             "Shop",
+            "Villa",
             "Warehouse"});
-            this.EstateTypeMenu.Location = new System.Drawing.Point(36, 236);
+            this.EstateTypeMenu.Location = new System.Drawing.Point(25, 258);
             this.EstateTypeMenu.Name = "EstateTypeMenu";
             this.EstateTypeMenu.Size = new System.Drawing.Size(159, 21);
             this.EstateTypeMenu.TabIndex = 23;
+            this.EstateTypeMenu.SelectedIndexChanged += new System.EventHandler(this.EstateTypeMenu_SelectedIndexChanged);
             // 
             // EstateCountryMenu
             // 
@@ -861,7 +883,7 @@ namespace Assignment1
             "Yemen",
             "Zambia",
             "Zimbabwe"});
-            this.EstateCountryMenu.Location = new System.Drawing.Point(36, 198);
+            this.EstateCountryMenu.Location = new System.Drawing.Point(25, 220);
             this.EstateCountryMenu.Name = "EstateCountryMenu";
             this.EstateCountryMenu.Size = new System.Drawing.Size(159, 21);
             this.EstateCountryMenu.TabIndex = 12;
@@ -869,7 +891,7 @@ namespace Assignment1
             // EditInfo
             // 
             this.EditInfo.BackColor = System.Drawing.Color.Moccasin;
-            this.EditInfo.Location = new System.Drawing.Point(217, 276);
+            this.EditInfo.Location = new System.Drawing.Point(206, 298);
             this.EditInfo.Multiline = true;
             this.EditInfo.Name = "EditInfo";
             this.EditInfo.ReadOnly = true;
@@ -879,7 +901,7 @@ namespace Assignment1
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(20, 29);
+            this.label11.Location = new System.Drawing.Point(9, 51);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(51, 13);
             this.label11.TabIndex = 21;
@@ -888,7 +910,7 @@ namespace Assignment1
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(20, 68);
+            this.label10.Location = new System.Drawing.Point(9, 90);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(35, 13);
             this.label10.TabIndex = 20;
@@ -897,7 +919,7 @@ namespace Assignment1
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(20, 104);
+            this.label9.Location = new System.Drawing.Point(9, 126);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 19;
@@ -906,7 +928,7 @@ namespace Assignment1
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(20, 143);
+            this.label8.Location = new System.Drawing.Point(9, 165);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(24, 13);
             this.label8.TabIndex = 18;
@@ -915,7 +937,7 @@ namespace Assignment1
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 182);
+            this.label7.Location = new System.Drawing.Point(9, 204);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(43, 13);
             this.label7.TabIndex = 17;
@@ -924,7 +946,7 @@ namespace Assignment1
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 222);
+            this.label6.Location = new System.Drawing.Point(10, 244);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 16;
@@ -933,7 +955,7 @@ namespace Assignment1
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(20, 260);
+            this.label4.Location = new System.Drawing.Point(9, 282);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 14;
@@ -943,7 +965,7 @@ namespace Assignment1
             // 
             this.EstateUpdateButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.EstateUpdateButton.Enabled = false;
-            this.EstateUpdateButton.Location = new System.Drawing.Point(217, 347);
+            this.EstateUpdateButton.Location = new System.Drawing.Point(206, 369);
             this.EstateUpdateButton.Name = "EstateUpdateButton";
             this.EstateUpdateButton.Size = new System.Drawing.Size(143, 23);
             this.EstateUpdateButton.TabIndex = 13;
@@ -954,7 +976,7 @@ namespace Assignment1
             // SqrftLabel
             // 
             this.SqrftLabel.AutoSize = true;
-            this.SqrftLabel.Location = new System.Drawing.Point(20, 299);
+            this.SqrftLabel.Location = new System.Drawing.Point(9, 321);
             this.SqrftLabel.Name = "SqrftLabel";
             this.SqrftLabel.Size = new System.Drawing.Size(65, 13);
             this.SqrftLabel.TabIndex = 12;
@@ -963,7 +985,7 @@ namespace Assignment1
             // RentLabel
             // 
             this.RentLabel.AutoSize = true;
-            this.RentLabel.Location = new System.Drawing.Point(19, 335);
+            this.RentLabel.Location = new System.Drawing.Point(8, 357);
             this.RentLabel.Name = "RentLabel";
             this.RentLabel.Size = new System.Drawing.Size(30, 13);
             this.RentLabel.TabIndex = 11;
@@ -971,7 +993,7 @@ namespace Assignment1
             // 
             // EstateRent
             // 
-            this.EstateRent.Location = new System.Drawing.Point(36, 351);
+            this.EstateRent.Location = new System.Drawing.Point(25, 373);
             this.EstateRent.Name = "EstateRent";
             this.EstateRent.ReadOnly = true;
             this.EstateRent.Size = new System.Drawing.Size(159, 20);
@@ -980,7 +1002,7 @@ namespace Assignment1
             // 
             // EstateSqrft
             // 
-            this.EstateSqrft.Location = new System.Drawing.Point(36, 315);
+            this.EstateSqrft.Location = new System.Drawing.Point(25, 337);
             this.EstateSqrft.Name = "EstateSqrft";
             this.EstateSqrft.ReadOnly = true;
             this.EstateSqrft.Size = new System.Drawing.Size(159, 20);
@@ -989,7 +1011,7 @@ namespace Assignment1
             // 
             // EstateCity
             // 
-            this.EstateCity.Location = new System.Drawing.Point(36, 159);
+            this.EstateCity.Location = new System.Drawing.Point(25, 181);
             this.EstateCity.Name = "EstateCity";
             this.EstateCity.ReadOnly = true;
             this.EstateCity.Size = new System.Drawing.Size(159, 20);
@@ -998,7 +1020,7 @@ namespace Assignment1
             // 
             // EstateZip
             // 
-            this.EstateZip.Location = new System.Drawing.Point(36, 120);
+            this.EstateZip.Location = new System.Drawing.Point(25, 142);
             this.EstateZip.Name = "EstateZip";
             this.EstateZip.ReadOnly = true;
             this.EstateZip.Size = new System.Drawing.Size(159, 20);
@@ -1007,7 +1029,7 @@ namespace Assignment1
             // 
             // EstateStreet
             // 
-            this.EstateStreet.Location = new System.Drawing.Point(36, 84);
+            this.EstateStreet.Location = new System.Drawing.Point(25, 106);
             this.EstateStreet.Name = "EstateStreet";
             this.EstateStreet.ReadOnly = true;
             this.EstateStreet.Size = new System.Drawing.Size(159, 20);
@@ -1016,7 +1038,7 @@ namespace Assignment1
             // 
             // EstateId
             // 
-            this.EstateId.Location = new System.Drawing.Point(36, 45);
+            this.EstateId.Location = new System.Drawing.Point(25, 67);
             this.EstateId.Name = "EstateId";
             this.EstateId.ReadOnly = true;
             this.EstateId.Size = new System.Drawing.Size(159, 20);
@@ -1026,7 +1048,7 @@ namespace Assignment1
             // DisplayImage
             // 
             this.DisplayImage.BackColor = System.Drawing.Color.Maroon;
-            this.DisplayImage.Location = new System.Drawing.Point(203, 36);
+            this.DisplayImage.Location = new System.Drawing.Point(192, 58);
             this.DisplayImage.Name = "DisplayImage";
             this.DisplayImage.Size = new System.Drawing.Size(205, 144);
             this.DisplayImage.TabIndex = 0;
@@ -1037,7 +1059,7 @@ namespace Assignment1
             this.EstateList.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.EstateList.ForeColor = System.Drawing.SystemColors.WindowText;
             this.EstateList.FormattingEnabled = true;
-            this.EstateList.Location = new System.Drawing.Point(3, 227);
+            this.EstateList.Location = new System.Drawing.Point(420, 230);
             this.EstateList.Name = "EstateList";
             this.EstateList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.EstateList.ScrollAlwaysVisible = true;
@@ -1051,7 +1073,7 @@ namespace Assignment1
             this.tabControl1.Location = new System.Drawing.Point(12, 27);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 550);
+            this.tabControl1.Size = new System.Drawing.Size(782, 525);
             this.tabControl1.TabIndex = 0;
             // 
             // menuStrip1
@@ -1060,7 +1082,7 @@ namespace Assignment1
             this.mnuFile});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(806, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1082,38 +1104,38 @@ namespace Assignment1
             // mnuNew
             // 
             this.mnuNew.Name = "mnuNew";
-            this.mnuNew.Size = new System.Drawing.Size(180, 22);
+            this.mnuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.mnuNew.Size = new System.Drawing.Size(158, 22);
             this.mnuNew.Text = "New";
-            this.mnuNew.ShortcutKeys = Keys.Control | Keys.N;
             this.mnuNew.Click += new System.EventHandler(this.mnuNew_Click);
             // 
             // mnuFileOpen
             // 
             this.mnuFileOpen.Name = "mnuFileOpen";
-            this.mnuFileOpen.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
+            this.mnuFileOpen.Size = new System.Drawing.Size(158, 22);
             this.mnuFileOpen.Text = "Open ...";
-            this.mnuFileOpen.ShortcutKeys = Keys.Control | Keys.O;
             this.mnuFileOpen.Click += new System.EventHandler(this.mnuFileOpen_Click);
             // 
             // mnuFileSave
             // 
             this.mnuFileSave.Name = "mnuFileSave";
-            this.mnuFileSave.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.mnuFileSave.Size = new System.Drawing.Size(158, 22);
             this.mnuFileSave.Text = "Save";
-            this.mnuFileSave.ShortcutKeys = Keys.Control | Keys.S;
             this.mnuFileSave.Click += new System.EventHandler(this.mnuFileSave_Click);
             // 
             // mnuFileSaveAs
             // 
             this.mnuFileSaveAs.Name = "mnuFileSaveAs";
-            this.mnuFileSaveAs.Size = new System.Drawing.Size(180, 22);
+            this.mnuFileSaveAs.Size = new System.Drawing.Size(158, 22);
             this.mnuFileSaveAs.Text = "Save as ...";
             this.mnuFileSaveAs.Click += new System.EventHandler(this.mnuFileSaveAs_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(155, 6);
             // 
             // mnuXML
             // 
@@ -1121,7 +1143,7 @@ namespace Assignment1
             this.mnuXMLImport,
             this.mnuXMLExport});
             this.mnuXML.Name = "mnuXML";
-            this.mnuXML.Size = new System.Drawing.Size(180, 22);
+            this.mnuXML.Size = new System.Drawing.Size(158, 22);
             this.mnuXML.Text = "XML";
             // 
             // mnuXMLImport
@@ -1141,21 +1163,21 @@ namespace Assignment1
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(155, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuExit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.mnuExit.Size = new System.Drawing.Size(158, 22);
             this.mnuExit.Text = "Exit";
-            this.mnuExit.ShortcutKeys = Keys.Control | Keys.X;
             this.mnuExit.Click += new System.EventHandler(this.mnuExit_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 579);
+            this.ClientSize = new System.Drawing.Size(806, 563);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -1249,6 +1271,8 @@ namespace Assignment1
         private System.Windows.Forms.ToolStripMenuItem mnuXMLExport;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem mnuExit;
+        private Label UniqueEstateValueText;
+        private TextBox UniqueEstateValue;
     }
 }
 

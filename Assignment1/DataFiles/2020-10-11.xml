@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfEstate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Estate xsi:type="House">
+    <Id>1</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storvägen 2</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <Category>House</Category>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\House.jpg</Image>
+  </Estate>
+  <Estate xsi:type="House">
+    <Id>2</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storvägen 3</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <Category>House</Category>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\House.jpg</Image>
+  </Estate>
+  <Estate xsi:type="Shop">
+    <Id>3</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storgatan 23</Street>
+      <Zip>12345</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <Category>Shop</Category>
+    <LegalType>Rental</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\Storefront.jpg</Image>
+  </Estate>
+  <Estate xsi:type="Shop">
+    <Id>4</Id>
+    <Address>
+      <country>Sverige</country>
+      <Street>Storgatan 12</Street>
+      <Zip>1234</Zip>
+      <City>Malmö</City>
+    </Address>
+    <Sqrft>1234</Sqrft>
+    <Rent>1234</Rent>
+    <Category>Shop</Category>
+    <LegalType>Ownership</LegalType>
+    <Image>C:\Users\Henrik\source\repos\Assignment1\Assignment1\Images\Storefront.jpg</Image>
+  </Estate>
+</ArrayOfEstate>
