@@ -217,10 +217,10 @@ namespace Assignment1
                 string imageLocation = this.DisplayImage.ImageLocation;
 
                 //Checks wether the estate type is either Shop or Warehouse.
-                if(EstateTypeMenu.Text == "Shop" || EstateTypeMenu.Text == "Warehouse")
+                if(EstateTypeMenu.Text == Estate.EstateType.Shop.ToString() || EstateTypeMenu.Text == Estate.EstateType.Warehouse.ToString())
                 {
                     //Shop and Warehouse can't be of the legal type Tenement.
-                    if (EstateLegalMenu.Text == "Tenement")
+                    if (EstateLegalMenu.Text == Estate.Legal.Tenement.ToString())
                     {
                         //Informs the user of the issue mentioned above.
                         this.EditInfo.Text = "Shops and Warehouses can't have Tenement as legal type.";
@@ -229,32 +229,32 @@ namespace Assignment1
                 }
 
                 //Depending on the type of estate the program creates different estates.
-                if (this.EstateTypeMenu.Text == "House")
+                if (this.EstateTypeMenu.Text == Estate.EstateType.House.ToString())
                 {
                     int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
                     res = new House(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
-                else if (EstateTypeMenu.Text == "Apartment")
+                else if (EstateTypeMenu.Text == Estate.EstateType.Apartment.ToString())
                 {
                     int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
                     res = new Apartment(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
-                else if (EstateTypeMenu.Text == "Villa")
+                else if (EstateTypeMenu.Text == Estate.EstateType.Villa.ToString())
                 {
                     int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
                     res = new Villa(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
-                else if (EstateTypeMenu.Text == "Rowhouse")
+                else if (EstateTypeMenu.Text == Estate.EstateType.Rowhouse.ToString())
                 {
                     int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
                     res = new Rowhouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Residential.Legal)Enum.Parse(typeof(Residential.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
-                else if (EstateTypeMenu.Text == "Shop")
+                else if (EstateTypeMenu.Text == Estate.EstateType.Shop.ToString())
                 {
                     int val = VariablesCheck.CheckIfNumberFieldHasLetters(UniqueEstateValue.Text);
                     res = new Shop(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation, val);
                 }
-                else if (EstateTypeMenu.Text == "Warehouse")
+                else if (EstateTypeMenu.Text == Estate.EstateType.Warehouse.ToString())
                 {
                     bool val = VariablesCheck.checkTrueFalse(UniqueEstateValue.Text);
                     res = new Warehouse(id, sqrft, rent, new Address(this.EstateStreet.Text, zip, this.EstateCity.Text, EstateUtils.parseCountry(this.EstateCountryMenu.Text)), (Commercial.Legal)Enum.Parse(typeof(Commercial.Legal), this.EstateLegalMenu.Text), imageLocation, val);
