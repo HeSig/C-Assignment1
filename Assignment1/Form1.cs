@@ -72,10 +72,9 @@ namespace Assignment1
         private void UpdateEstateList()
         {
             String street = this.SearchBarStreet.Text;
-            List<Estate> res = Estates.ToList();
 
             string zip = "";
-            int hiddenCount = 0;
+
             if (SearchBarZip.Text != null)
             {
                 zip = this.SearchBarZip.Text;
@@ -85,9 +84,6 @@ namespace Assignment1
             if (this.SearchBoxCountry.SelectedIndex > 0)
             {
                 country = this.SearchBoxCountry.Text;
-                //Console.WriteLine(this.SearchBoxCountry.SelectedIndex);
-                Countries c = EstateUtils.parseCountry(country);
-                if (Estates.GetCountryDictionary().Contains(c)) res = Estates.GetCountryDictionary().Get(c);
 
             }
             String legal = "";
@@ -104,15 +100,18 @@ namespace Assignment1
 
             EstateList.Items.Clear();
             EstateListItems = new LinkedList<string>();
+
+            String[] listItems = Estates.FilterEstates(street, zip, city, country, type, legal, EstateSqrftSlider.Value, EstateRentSlider.Value);
+
+
+
             //This for-loop goes through every Estate in the list of Estates and checks wether the filter-attributes correspond to the attributes of the estate.
             //If they do they are added to the list, if not they are hidden from view.
-            for (int i = 0; i < res.Count; i++)
+            for (int i = 0; i < listItems.Count(); i++)
             {
-                Estate e = res[i];
-                if (e.Address.Street.ToLower().Contains(street.ToLower()) && e.Address.Zip.ToString().Contains(zip) && e.Address.City.ToLower().Contains(city.ToLower()) && e.Address.country.ToString().Contains(country) && e.type.ToString().Contains(type) && e.GetLegalType().Contains(legal) && e.Sqrft >= EstateSqrftSlider.Value && e.Rent <= EstateRentSlider.Value)
+                if (listItems[i] != null)
                 {
-                    //Create a string representation of an Estate as such: ID : Street, City, Country.
-                    EstateListItems.AddLast($"{e.Id} : {e.Address.Street} {e.Address.City} {e.Address.country}");
+                    EstateListItems.AddLast(listItems[i]);
                     EstateList.Items.AddRange(new Object[]
                     {
                         EstateListItems.Last()
@@ -120,8 +119,10 @@ namespace Assignment1
                 }
                 else
                 {
-                    hiddenCount++;
+                    break;
                 }
+
+
             }
             if (Estates.Count == 0)
             {
@@ -131,6 +132,8 @@ namespace Assignment1
             {
                 DeleteButton.Enabled = true;
             }
+
+            int hiddenCount =  Estates.Count - EstateList.Items.Count;
             //Shows the user how many Estates are hidden from the list, so there's no confusion.
             NumberOfHiddenItems.Text = hiddenCount + " hidden items";
             //Resets the selected estate, because the order of estates have been shifted around.
@@ -217,7 +220,7 @@ namespace Assignment1
                 string imageLocation = this.DisplayImage.ImageLocation;
 
                 //Checks wether the estate type is either Shop or Warehouse.
-                if(EstateTypeMenu.Text == Estate.EstateType.Shop.ToString() || EstateTypeMenu.Text == Estate.EstateType.Warehouse.ToString())
+                if (EstateTypeMenu.Text == Estate.EstateType.Shop.ToString() || EstateTypeMenu.Text == Estate.EstateType.Warehouse.ToString())
                 {
                     //Shop and Warehouse can't be of the legal type Tenement.
                     if (EstateLegalMenu.Text == Estate.Legal.Tenement.ToString())
